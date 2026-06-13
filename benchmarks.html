@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Implementation Benchmarks by Industry — TrueAICost.com</title>
+  <meta name="description" content="Real AI implementation cost data by industry, project type, and company size. Every number sourced and cited.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <section class="hero" style="padding:48px 0 36px;">
+    <div class="container">
+      <h1>Industry Benchmarks</h1>
+      <p>Real AI implementation costs, success rates, and timelines — filterable by industry, project type, and company size.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="filter-bar">
+        <select id="filterIndustry">
+          <option value="all">All Industries</option>
+          <option value="manufacturing">Manufacturing</option>
+          <option value="healthcare">Healthcare</option>
+          <option value="finance">Financial Services</option>
+          <option value="retail">Retail / E-commerce</option>
+          <option value="logistics">Logistics / Supply Chain</option>
+        </select>
+        <select id="filterProject">
+          <option value="all">All Project Types</option>
+          <option value="chatbot">Chatbot / Virtual Agent</option>
+          <option value="document">Document Processing</option>
+          <option value="predictive">Predictive Maintenance</option>
+          <option value="quality">Quality Inspection</option>
+          <option value="custom">Custom ML</option>
+          <option value="rag">RAG / Knowledge Base</option>
+        </select>
+        <select id="filterSize">
+          <option value="all">All Company Sizes</option>
+          <option value="smb">SMB (&lt;200 employees)</option>
+          <option value="mid">Mid-Market (200–2000)</option>
+          <option value="enterprise">Enterprise (2000+)</option>
+        </select>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="data-table" id="benchmarkTable">
+          <thead>
+            <tr>
+              <th>Industry</th>
+              <th>Project Type</th>
+              <th>Avg. 3-Year Cost</th>
+              <th>Success Rate</th>
+              <th>Time to ROI</th>
+              <th>Common Failure Mode</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Manufacturing</td><td>Predictive Maintenance</td><td><strong>$350K–$1.2M</strong></td><td><span style="color:var(--red);font-weight:600;">28%</span></td><td>24–36 months</td><td style="font-size:.85rem;">Poor sensor data quality; lack of historical failure data</td></tr>
+            <tr><td>Manufacturing</td><td>Quality Inspection</td><td><strong>$400K–$1.5M</strong></td><td><span style="color:var(--red);font-weight:600;">32%</span></td><td>18–30 months</td><td style="font-size:.85rem;">Insufficient labeled defect images; lighting variance</td></tr>
+            <tr><td>Manufacturing</td><td>Chatbot</td><td><strong>$120K–$400K</strong></td><td><span style="color:var(--green);font-weight:600;">48%</span></td><td>12–18 months</td><td style="font-size:.85rem;">Narrow domain coverage; employee resistance</td></tr>
+            <tr><td>Manufacturing</td><td>Document Processing</td><td><strong>$150K–$500K</strong></td><td><span style="color:var(--green);font-weight:600;">42%</span></td><td>12–24 months</td><td style="font-size:.85rem;">Inconsistent document formats; OCR accuracy on handwritten forms</td></tr>
+            <tr><td>Healthcare</td><td>Document Processing</td><td><strong>$250K–$800K</strong></td><td><span style="color:var(--red);font-weight:600;">35%</span></td><td>18–30 months</td><td style="font-size:.85rem;">HIPAA compliance costs; EHR integration complexity</td></tr>
+            <tr><td>Healthcare</td><td>Custom ML</td><td><strong>$500K–$2M</strong></td><td><span style="color:var(--red);font-weight:600;">25%</span></td><td>24–48 months</td><td style="font-size:.85rem;">FDA/regulatory approval timeline; data de-identification costs</td></tr>
+            <tr><td>Healthcare</td><td>RAG / Knowledge Base</td><td><strong>$100K–$350K</strong></td><td><span style="color:var(--green);font-weight:600;">45%</span></td><td>10–18 months</td><td style="font-size:.85rem;">Hallucination risk with clinical data; clinician trust</td></tr>
+            <tr><td>Healthcare</td><td>Chatbot</td><td><strong>$150K–$500K</strong></td><td><span style="color:var(--red);font-weight:600;">40%</span></td><td>12–24 months</td><td style="font-size:.85rem;">Patient safety guardrails; liability concerns</td></tr>
+            <tr><td>Financial Services</td><td>Custom ML</td><td><strong>$300K–$1.2M</strong></td><td><span style="color:var(--red);font-weight:600;">38%</span></td><td>12–24 months</td><td style="font-size:.85rem;">Model explainability (SR 11-7); regulatory audit trail</td></tr>
+            <tr><td>Financial Services</td><td>Document Processing</td><td><strong>$200K–$600K</strong></td><td><span style="color:var(--green);font-weight:600;">45%</span></td><td>10–18 months</td><td style="font-size:.85rem;">Varied document templates; compliance validation</td></tr>
+            <tr><td>Financial Services</td><td>Chatbot</td><td><strong>$180K–$600K</strong></td><td><span style="color:var(--green);font-weight:600;">50%</span></td><td>8–16 months</td><td style="font-size:.85rem;">Hallucination risk in financial advice; compliance review</td></tr>
+            <tr><td>Financial Services</td><td>RAG / Knowledge Base</td><td><strong>$120K–$400K</strong></td><td><span style="color:var(--green);font-weight:600;">52%</span></td><td>8–14 months</td><td style="font-size:.85rem;">Stale regulatory data; citation accuracy</td></tr>
+            <tr><td>Retail</td><td>Custom ML</td><td><strong>$200K–$800K</strong></td><td><span style="color:var(--red);font-weight:600;">40%</span></td><td>12–24 months</td><td style="font-size:.85rem;">Demand volatility; cold-start for new products</td></tr>
+            <tr><td>Retail</td><td>Chatbot</td><td><strong>$80K–$300K</strong></td><td><span style="color:var(--green);font-weight:600;">55%</span></td><td>6–14 months</td><td style="font-size:.85rem;">Limited product knowledge; handoff to human agents</td></tr>
+            <tr><td>Retail</td><td>RAG / Knowledge Base</td><td><strong>$80K–$250K</strong></td><td><span style="color:var(--green);font-weight:600;">50%</span></td><td>6–12 months</td><td style="font-size:.85rem;">Product catalog churn; multi-language support</td></tr>
+            <tr><td>Retail</td><td>Document Processing</td><td><strong>$100K–$400K</strong></td><td><span style="color:var(--green);font-weight:600;">48%</span></td><td>10–18 months</td><td style="font-size:.85rem;">Invoice format variation; supplier onboarding</td></tr>
+            <tr><td>Logistics</td><td>Predictive Maintenance</td><td><strong>$300K–$1M</strong></td><td><span style="color:var(--red);font-weight:600;">30%</span></td><td>18–30 months</td><td style="font-size:.85rem;">Fleet heterogeneity; telematics data gaps</td></tr>
+            <tr><td>Logistics</td><td>Custom ML</td><td><strong>$250K–$900K</strong></td><td><span style="color:var(--red);font-weight:600;">35%</span></td><td>18–30 months</td><td style="font-size:.85rem;">Real-time constraint complexity; integration with TMS/WMS</td></tr>
+            <tr><td>Logistics</td><td>Document Processing</td><td><strong>$120K–$400K</strong></td><td><span style="color:var(--green);font-weight:600;">45%</span></td><td>10–18 months</td><td style="font-size:.85rem;">International shipping doc variation; multi-language OCR</td></tr>
+            <tr><td>Logistics</td><td>Chatbot</td><td><strong>$100K–$350K</strong></td><td><span style="color:var(--green);font-weight:600;">48%</span></td><td>8–16 months</td><td style="font-size:.85rem;">Real-time tracking integration; carrier API complexity</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="citation" style="margin-top:16px;">Sources: Gartner AI in Enterprise Survey 2024, McKinsey Global AI Survey 2024, Stanford HAI AI Index Report 2025, NIST AI RMF, Anaconda State of Data Science 2024, IDC FutureScape 2025. Cost ranges represent median estimates for mid-market companies (200–2000 employees).</p>
+    </div>
+  </section>
+
+  <section class="section" id="compliance">
+    <div class="container">
+      <h2 class="section-title">Compliance Cost Multipliers</h2>
+      <p class="section-sub">What regulated industries add on top of the base project cost — line items vendor quotes almost never include</p>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Regime</th>
+              <th>Applies To</th>
+              <th>Typical Added Cost</th>
+              <th>What It Covers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>SR 11-7</strong><br><span style="font-size:.8rem;color:var(--gray-500);">Fed model risk mgmt</span></td>
+              <td>Banks, FinServ, lenders using ML for credit/fraud/pricing</td>
+              <td><strong>$250K–$500K</strong></td>
+              <td style="font-size:.9rem;">Model validation, explainability engineering (SHAP/LIME pipelines), MRM documentation, independent review cycle, annual revalidation</td>
+            </tr>
+            <tr>
+              <td><strong>HIPAA + BAAs</strong><br><span style="font-size:.8rem;color:var(--gray-500);">PHI handling</span></td>
+              <td>Providers, payers, health-tech touching patient data</td>
+              <td><strong>$150K–$400K</strong></td>
+              <td style="font-size:.9rem;">BAA negotiation with every cloud/AI vendor, de-identification pipeline, audit logging, breach-notification infra, staff training</td>
+            </tr>
+            <tr>
+              <td><strong>FDA SaMD</strong><br><span style="font-size:.8rem;color:var(--gray-500);">Software as Medical Device</span></td>
+              <td>Clinical decision support, diagnostic AI</td>
+              <td><strong>$500K–$2M+</strong></td>
+              <td style="font-size:.9rem;">Pre-submission (Q-Sub), clinical validation studies, 510(k) or De Novo pathway, IRB review, post-market surveillance plan</td>
+            </tr>
+            <tr>
+              <td><strong>IEC 62443</strong><br><span style="font-size:.8rem;color:var(--gray-500);">Industrial cybersecurity</span></td>
+              <td>Manufacturing OT/IT integration, plant-floor AI</td>
+              <td><strong>$100K–$300K</strong></td>
+              <td style="font-size:.9rem;">Network segmentation (Purdue model), security assessment, DMZ architecture for MES/ERP links, zone-and-conduit design</td>
+            </tr>
+            <tr>
+              <td><strong>GDPR / EU AI Act</strong><br><span style="font-size:.8rem;color:var(--gray-500);">EU data + AI</span></td>
+              <td>Any AI serving EU citizens; high-risk AI systems</td>
+              <td><strong>$120K–$350K</strong></td>
+              <td style="font-size:.9rem;">DPIA, consent flows, data-residency architecture, AI Act conformity assessment, technical documentation, transparency notices</td>
+            </tr>
+            <tr>
+              <td><strong>NIST AI RMF</strong><br><span style="font-size:.8rem;color:var(--gray-500);">Federal + risk-averse enterprise</span></td>
+              <td>Federal contracts, critical-infrastructure adjacent</td>
+              <td><strong>$80K–$250K</strong></td>
+              <td style="font-size:.9rem;">Risk-map documentation, bias testing, model cards, continuous monitoring controls, governance artifacts</td>
+            </tr>
+            <tr>
+              <td><strong>SOC 2 Type II</strong><br><span style="font-size:.8rem;color:var(--gray-500);">Enterprise B2B trust</span></td>
+              <td>Any AI-SaaS selling to mid-market+ buyers</td>
+              <td><strong>$60K–$180K</strong></td>
+              <td style="font-size:.9rem;">Controls implementation, auditor fees, 6–12 month observation period, annual renewal</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout" style="margin-top:24px;">
+        <h4>💡 How to use this table</h4>
+        <p>Take your base project cost from the benchmark table above, then add the relevant compliance lines. A $500K mid-market bank FinServ project with SR 11-7 + SOC 2 is really a $810K–$1.18M project. Most vendor proposals assume you already have these controls — you probably don't.</p>
+      </div>
+      <p class="citation" style="margin-top:12px;">Sources: Federal Reserve SR 11-7 guidance (2011, reaffirmed 2024), HHS HIPAA cost studies (2023–2025), FDA SaMD guidance (Q-Sub data 2024), ISA/IEC 62443 practitioner surveys, IAPP GDPR compliance benchmarks, NIST AI RMF 1.0 (2023), AICPA SOC 2 fee surveys.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Cost by Phase — What Vendors Don't Quote</h2>
+      <p class="section-sub">Where the money really goes across industries</p>
+      <div class="chart-container" style="max-width:900px;height:400px;"><canvas id="phaseChart"></canvas></div>
+      <p class="citation" style="text-align:center;margin-top:12px;">Source: Industry cost analysis based on Gartner, McKinsey, and practitioner interviews (2024–2025)</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Timeline Reality Check</h2>
+      <p class="section-sub">What vendors promise vs. what actually happens</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="color:var(--navy);margin-bottom:16px;">Vendor Promise</h3>
+          <table class="data-table">
+            <tr><td>Proof of Concept</td><td>2–4 weeks</td></tr>
+            <tr><td>POC → Production</td><td>2–3 months</td></tr>
+            <tr><td>Full Adoption</td><td>"Immediate"</td></tr>
+            <tr><td>Positive ROI</td><td>"Within 6 months"</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--orange);margin-bottom:16px;">Actual (Median)</h3>
+          <table class="data-table">
+            <tr><td>Proof of Concept</td><td>4–8 weeks</td></tr>
+            <tr><td>POC → Production</td><td>6–14 months</td></tr>
+            <tr><td>Full Adoption</td><td>12–24 months</td></tr>
+            <tr><td>Positive ROI</td><td>18–36 months</td></tr>
+          </table>
+        </div>
+      </div>
+      <p class="citation" style="margin-top:12px;">Sources: Gartner 2024, McKinsey 2024, Stanford HAI AI Index 2025</p>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    const benchmarks = [
+      { industry: 'manufacturing', project: 'predictive', cost: '$350K–$1.2M', success: '28%', roi: '24–36 months', failure: 'Poor sensor data quality; lack of historical failure data', size: 'mid' },
+      { industry: 'manufacturing', project: 'quality', cost: '$400K–$1.5M', success: '32%', roi: '18–30 months', failure: 'Insufficient labeled defect images; lighting variance', size: 'mid' },
+      { industry: 'manufacturing', project: 'chatbot', cost: '$120K–$400K', success: '48%', roi: '12–18 months', failure: 'Narrow domain coverage; employee resistance', size: 'smb' },
+      { industry: 'manufacturing', project: 'document', cost: '$150K–$500K', success: '42%', roi: '12–24 months', failure: 'Inconsistent document formats; OCR accuracy on handwritten forms', size: 'mid' },
+      { industry: 'healthcare', project: 'document', cost: '$250K–$800K', success: '35%', roi: '18–30 months', failure: 'HIPAA compliance costs; EHR integration complexity', size: 'mid' },
+      { industry: 'healthcare', project: 'custom', cost: '$500K–$2M', success: '25%', roi: '24–48 months', failure: 'FDA/regulatory approval timeline; data de-identification costs', size: 'enterprise' },
+      { industry: 'healthcare', project: 'rag', cost: '$100K–$350K', success: '45%', roi: '10–18 months', failure: 'Hallucination risk with clinical data; clinician trust', size: 'mid' },
+      { industry: 'healthcare', project: 'chatbot', cost: '$150K–$500K', success: '40%', roi: '12–24 months', failure: 'Patient safety guardrails; liability concerns', size: 'mid' },
+      { industry: 'finance', project: 'custom', cost: '$300K–$1.2M', success: '38%', roi: '12–24 months', failure: 'Model explainability requirements; regulatory audit trail', size: 'mid' },
+      { industry: 'finance', project: 'document', cost: '$200K–$600K', success: '45%', roi: '10–18 months', failure: 'Varied document templates; compliance validation', size: 'mid' },
+      { industry: 'finance', project: 'chatbot', cost: '$180K–$600K', success: '50%', roi: '8–16 months', failure: 'Hallucination risk in financial advice; compliance review', size: 'mid' },
+      { industry: 'finance', project: 'rag', cost: '$120K–$400K', success: '52%', roi: '8–14 months', failure: 'Stale regulatory data; citation accuracy', size: 'smb' },
+      { industry: 'retail', project: 'custom', cost: '$200K–$800K', success: '40%', roi: '12–24 months', failure: 'Demand volatility; cold-start for new products', size: 'mid' },
+      { industry: 'retail', project: 'chatbot', cost: '$80K–$300K', success: '55%', roi: '6–14 months', failure: 'Limited product knowledge; handoff to human agents', size: 'smb' },
+      { industry: 'retail', project: 'rag', cost: '$80K–$250K', success: '50%', roi: '6–12 months', failure: 'Product catalog churn; multi-language support', size: 'smb' },
+      { industry: 'retail', project: 'document', cost: '$100K–$400K', success: '48%', roi: '10–18 months', failure: 'Invoice format variation; supplier onboarding', size: 'mid' },
+      { industry: 'logistics', project: 'predictive', cost: '$300K–$1M', success: '30%', roi: '18–30 months', failure: 'Fleet heterogeneity; telematics data gaps', size: 'mid' },
+      { industry: 'logistics', project: 'custom', cost: '$250K–$900K', success: '35%', roi: '18–30 months', failure: 'Real-time constraint complexity; integration with TMS/WMS', size: 'mid' },
+      { industry: 'logistics', project: 'document', cost: '$120K–$400K', success: '45%', roi: '10–18 months', failure: 'International shipping doc variation; multi-language OCR', size: 'mid' },
+      { industry: 'logistics', project: 'chatbot', cost: '$100K–$350K', success: '48%', roi: '8–16 months', failure: 'Real-time tracking integration; carrier API complexity', size: 'smb' },
+    ];
+
+    function renderTable() {
+      const fi = document.getElementById('filterIndustry').value;
+      const fp = document.getElementById('filterProject').value;
+      const fs = document.getElementById('filterSize').value;
+      const filtered = benchmarks.filter(b =>
+        (fi === 'all' || b.industry === fi) &&
+        (fp === 'all' || b.project === fp) &&
+        (fs === 'all' || b.size === fs)
+      );
+      const industryNames = { manufacturing: 'Manufacturing', healthcare: 'Healthcare', finance: 'Financial Services', retail: 'Retail', logistics: 'Logistics' };
+      const projectNames = { predictive: 'Predictive Maintenance', quality: 'Quality Inspection', chatbot: 'Chatbot', document: 'Document Processing', custom: 'Custom ML', rag: 'RAG / Knowledge Base' };
+      const tbody = document.querySelector('#benchmarkTable tbody');
+      tbody.innerHTML = filtered.map(b => `<tr>
+        <td>${industryNames[b.industry]}</td>
+        <td>${projectNames[b.project]}</td>
+        <td><strong>${b.cost}</strong></td>
+        <td><span style="color:${parseInt(b.success) > 40 ? 'var(--green)' : 'var(--red)'};font-weight:600;">${b.success}</span></td>
+        <td>${b.roi}</td>
+        <td style="font-size:.85rem;">${b.failure}</td>
+      </tr>`).join('');
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--gray-400);padding:32px;">No matching benchmarks. Try different filters.</td></tr>';
+      }
+    }
+
+    document.getElementById('filterIndustry').addEventListener('change', renderTable);
+    document.getElementById('filterProject').addEventListener('change', renderTable);
+    document.getElementById('filterSize').addEventListener('change', renderTable);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTable();
+
+      // Phase chart
+      new Chart(document.getElementById('phaseChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Manufacturing', 'Healthcare', 'Finance', 'Retail', 'Logistics'],
+          datasets: [
+            { label: 'Data Prep', data: [35, 30, 25, 28, 32], backgroundColor: '#1a365d' },
+            { label: 'Model Dev', data: [12, 15, 12, 10, 12], backgroundColor: '#2a4a7f' },
+            { label: 'Integration', data: [18, 20, 18, 15, 20], backgroundColor: '#3b6aad' },
+            { label: 'Monitoring', data: [22, 18, 25, 22, 20], backgroundColor: '#ed8936' },
+            { label: 'Compute', data: [8, 10, 12, 18, 10], backgroundColor: '#f6ad55' },
+            { label: 'Change Mgmt', data: [5, 7, 8, 7, 6], backgroundColor: '#cbd5e0' },
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { tooltip: { callbacks: { label: c => c.dataset.label + ': ' + c.raw + '%' } } },
+          scales: { x: { stacked: true }, y: { stacked: true, max: 100, ticks: { callback: v => v + '%' } } }
+        }
+      });
+    });
+  </script>
+
+  <!-- CTA before footer -->
+  <section class="section" style="text-align:center;padding:48px 0;">
+    <div class="container" style="max-width:680px;">
+      <h2 style="color:var(--navy);margin-bottom:12px;">Run These Numbers for Your Project</h2>
+      <p style="color:var(--gray-600);margin-bottom:24px;">Feed your project type, scale, and vendor quote into the calculator for a tailored 3-year estimate — with every assumption shown.</p>
+      <a href="calculator.html" class="btn btn-primary">Open the Calculator →</a>
+      <p style="color:var(--gray-500);font-size:.85rem;margin-top:12px;">Free, no signup. The whole model is <a href="https://github.com/brcrusoe72/trueaicost" style="color:var(--blue);">open source</a>.</p>
+    </div>
+  </section>
+</body>
+</html>

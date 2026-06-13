@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI True Cost Calculator — TrueAICost.com</title>
+  <meta name="description" content="An open, opinionated estimate of the real 3-year total cost of an AI project — data prep, MLOps, compute, monitoring, and change management included. Every assumption is shown and sourced.">
+  <meta property="og:title" content="AI True Cost Calculator — TrueAICost.com">
+  <meta property="og:description" content="A vendor quote usually prices the build, which is ~1/3 of the 3-year reality. See the rest — with the math shown.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <section class="hero" style="padding:48px 0 36px;">
+    <div class="container">
+      <h1>AI True Cost Calculator</h1>
+      <p>A realistic 3-year total cost of ownership in under 5 minutes — with every assumption shown.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+
+      <div class="steps" id="stepIndicator">
+        <div class="step active" data-step="1"><span class="num">1</span> Project Type</div>
+        <div class="step-line"></div>
+        <div class="step" data-step="2"><span class="num">2</span> Company</div>
+        <div class="step-line"></div>
+        <div class="step" data-step="3"><span class="num">3</span> Vendor Quote</div>
+        <div class="step-line"></div>
+        <div class="step" data-step="4"><span class="num">4</span> Results</div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="calc-step" id="step1">
+        <h2 style="color:var(--navy);margin-bottom:8px;">What type of AI project?</h2>
+        <p style="color:var(--gray-500);margin-bottom:24px;">Select the category that best describes your planned implementation.</p>
+        <div class="option-grid" id="projectTypes">
+          <div class="option-card" data-value="chatbot"><div class="icon">💬</div><div class="label">Chatbot / Virtual Agent</div><div class="desc">Customer service, internal Q&A</div></div>
+          <div class="option-card" data-value="document"><div class="icon">📄</div><div class="label">Document Processing</div><div class="desc">OCR, extraction, classification</div></div>
+          <div class="option-card" data-value="predictive"><div class="icon">📈</div><div class="label">Predictive Maintenance</div><div class="desc">Equipment failure prediction</div></div>
+          <div class="option-card" data-value="quality"><div class="icon">🔬</div><div class="label">Quality Inspection</div><div class="desc">Visual inspection, defect detection</div></div>
+          <div class="option-card" data-value="custom"><div class="icon">🧠</div><div class="label">Custom ML Model</div><div class="desc">Forecasting, optimization, scoring</div></div>
+          <div class="option-card" data-value="rag"><div class="icon">📚</div><div class="label">RAG / Knowledge Base</div><div class="desc">Enterprise search, document Q&A</div></div>
+        </div>
+        <div style="margin-top:32px;text-align:right;">
+          <button class="btn btn-primary" onclick="nextStep(2)" id="btn1" disabled>Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="calc-step" id="step2" style="display:none;">
+        <h2 style="color:var(--navy);margin-bottom:8px;">Tell us about your company</h2>
+        <p style="color:var(--gray-500);margin-bottom:24px;">This helps calibrate cost estimates to your scale. Nothing is sent anywhere — the math runs in your browser.</p>
+        <div class="form-group">
+          <label>Industry</label>
+          <select id="industry">
+            <option value="">Select your industry</option>
+            <option value="manufacturing">Manufacturing</option>
+            <option value="healthcare">Healthcare</option>
+            <option value="finance">Financial Services</option>
+            <option value="retail">Retail / E-commerce</option>
+            <option value="logistics">Logistics / Supply Chain</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Number of Employees</label>
+          <select id="companySize">
+            <option value="">Select range</option>
+            <option value="small">1–50 employees</option>
+            <option value="mid">51–200 employees</option>
+            <option value="midlarge">201–500 employees</option>
+            <option value="large">501–2,000 employees</option>
+            <option value="enterprise">2,000+ employees</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>IT Maturity (1 = spreadsheets, 5 = cloud-native + DevOps)</label>
+          <input type="range" id="itMaturity" min="1" max="5" value="3">
+          <div style="display:flex;justify-content:space-between;font-size:.8rem;color:var(--gray-500);"><span>1 – Basic</span><span>3 – Moderate</span><span>5 – Advanced</span></div>
+        </div>
+        <div class="form-group">
+          <label>Data Readiness (1 = no structured data, 5 = clean data warehouse)</label>
+          <input type="range" id="dataReadiness" min="1" max="5" value="2">
+          <div style="display:flex;justify-content:space-between;font-size:.8rem;color:var(--gray-500);"><span>1 – Messy</span><span>3 – Partial</span><span>5 – Ready</span></div>
+        </div>
+        <div style="margin-top:32px;display:flex;justify-content:space-between;">
+          <button class="btn btn-outline" onclick="nextStep(1)">← Back</button>
+          <button class="btn btn-primary" onclick="nextStep(3)" id="btn2">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="calc-step" id="step3" style="display:none;">
+        <h2 style="color:var(--navy);margin-bottom:8px;">What has your vendor quoted?</h2>
+        <p style="color:var(--gray-500);margin-bottom:24px;">If you haven't gotten a quote yet, leave these blank for industry estimates.</p>
+        <div class="form-group">
+          <label>Vendor's Quoted Price ($)</label>
+          <input type="number" id="vendorQuote" placeholder="e.g., 150000" min="0">
+          <div class="form-help">The total price on their proposal</div>
+        </div>
+        <div class="form-group">
+          <label>Quoted Timeline (months)</label>
+          <input type="number" id="vendorTimeline" placeholder="e.g., 3" min="0">
+        </div>
+        <div class="form-group">
+          <label>What's included in the quote? (check all that apply)</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;">
+            <label style="font-weight:400;font-size:.9rem;"><input type="checkbox" class="included" value="model"> Model development/licensing</label>
+            <label style="font-weight:400;font-size:.9rem;"><input type="checkbox" class="included" value="data"> Data preparation</label>
+            <label style="font-weight:400;font-size:.9rem;"><input type="checkbox" class="included" value="integration"> Integration engineering</label>
+            <label style="font-weight:400;font-size:.9rem;"><input type="checkbox" class="included" value="monitoring"> Ongoing monitoring</label>
+            <label style="font-weight:400;font-size:.9rem;"><input type="checkbox" class="included" value="compute"> Compute / hosting</label>
+            <label style="font-weight:400;font-size:.9rem;"><input type="checkbox" class="included" value="training"> Staff training</label>
+            <label style="font-weight:400;font-size:.9rem;"><input type="checkbox" class="included" value="mlops"> MLOps / retraining</label>
+            <label style="font-weight:400;font-size:.9rem;"><input type="checkbox" class="included" value="change"> Change management</label>
+          </div>
+        </div>
+        <div style="margin-top:32px;display:flex;justify-content:space-between;">
+          <button class="btn btn-outline" onclick="nextStep(2)">← Back</button>
+          <button class="btn btn-primary" onclick="calculateResults()">See True Cost →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: RESULTS -->
+      <div class="calc-step" id="step4" style="display:none;">
+        <div style="text-align:center;margin-bottom:32px;">
+          <h2 style="color:var(--navy);margin-bottom:8px;">Your True 3-Year Cost Estimate</h2>
+          <p style="color:var(--gray-500);">An open, opinionated estimate — not a quote. Expand <em>“How this was calculated”</em> below to see every assumption and source.</p>
+        </div>
+
+        <!-- Vendor callout -->
+        <div class="callout callout-danger" id="vendorCallout" style="display:none;">
+          <h4>⚠️ Your Vendor Quote vs. True Cost</h4>
+          <p>Your vendor quoted <strong id="vendorQuoteDisplay"></strong> — about <strong id="vendorVsTrue"></strong> of the most-likely 3-year cost below. Based on the line items you checked, the quote scopes roughly <strong id="vendorScope"></strong> of the real cost categories; the uncovered <strong id="vendorGap"></strong> (data prep, monitoring, integration, change management) tends to land on you later.</p>
+          <p id="vendorTimelineNote" style="margin-top:8px;font-size:.9rem;display:none;"></p>
+        </div>
+
+        <!-- Cost range chart -->
+        <div class="card" style="margin-bottom:24px;">
+          <h3 style="color:var(--navy);margin-bottom:16px;">3-Year Total Cost of Ownership</h3>
+          <div class="chart-container" style="max-width:100%;height:200px;"><canvas id="costRangeChart"></canvas></div>
+          <div style="display:flex;justify-content:space-around;margin-top:16px;text-align:center;">
+            <div><div style="color:var(--green);font-weight:700;font-size:1.3rem;" id="costLow"></div><div style="font-size:.8rem;color:var(--gray-500);">Best Case</div></div>
+            <div><div style="color:var(--orange);font-weight:700;font-size:1.3rem;" id="costMid"></div><div style="font-size:.8rem;color:var(--gray-500);">Most Likely</div></div>
+            <div><div style="color:var(--red);font-weight:700;font-size:1.3rem;" id="costHigh"></div><div style="font-size:.8rem;color:var(--gray-500);">Worst Case</div></div>
+          </div>
+        </div>
+
+        <!-- Breakdown -->
+        <div class="card" style="margin-bottom:24px;">
+          <h3 style="color:var(--navy);margin-bottom:16px;">Cost Breakdown by Category</h3>
+          <div class="chart-container" style="max-width:100%;height:300px;"><canvas id="breakdownChart"></canvas></div>
+        </div>
+
+        <!-- Build vs Buy vs Hybrid -->
+        <div class="card" style="margin-bottom:24px;">
+          <h3 style="color:var(--navy);margin-bottom:16px;">Build vs. Buy vs. Hybrid</h3>
+          <div class="grid-3" id="buildBuyGrid"></div>
+          <p class="citation" style="margin-top:12px;">Success rates calibrated to Gartner's ~30% post-PoC abandonment for builds; cost factors are practitioner heuristics. See the breakdown below.</p>
+        </div>
+
+        <!-- Risk & Success -->
+        <div class="grid-2" style="margin-bottom:24px;">
+          <div class="card" style="text-align:center;">
+            <h3 style="color:var(--navy);margin-bottom:12px;">Risk Score</h3>
+            <div id="riskBadge"></div>
+            <p style="font-size:.85rem;color:var(--gray-500);margin-top:12px;" id="riskExplain"></p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <h3 style="color:var(--navy);margin-bottom:12px;">Success Probability</h3>
+            <div style="font-size:3rem;font-weight:800;color:var(--navy);" id="successProb"></div>
+            <p style="font-size:.85rem;color:var(--gray-500);margin-top:4px;">chance of reaching production</p>
+            <p class="citation">Adjusted for your IT maturity and data readiness</p>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="card" style="margin-bottom:24px;">
+          <h3 style="color:var(--navy);margin-bottom:16px;">Realistic Timeline</h3>
+          <div class="grid-2" id="timelineGrid"></div>
+          <p class="citation" style="margin-top:12px;">Vendor timelines run ~2.5× optimistic (Gartner 2024).</p>
+        </div>
+
+        <!-- How this was calculated -->
+        <div class="card" style="margin-bottom:24px;">
+          <details id="showWork">
+            <summary style="cursor:pointer;font-weight:700;color:var(--navy);font-size:1.05rem;">▸ How this estimate was calculated</summary>
+            <p style="font-size:.9rem;color:var(--gray-600);margin:12px 0;">Every multiplier applied to your inputs, in order. <strong style="color:var(--green);">cited</strong> = a published figure; <strong style="color:var(--orange);">calibrated</strong> = a range informed by the studies; <strong style="color:var(--red);">heuristic</strong> = practitioner judgment — argue with it.</p>
+            <div style="overflow-x:auto;">
+              <table class="data-table" id="assumptionsTable" style="width:100%;font-size:.85rem;"></table>
+            </div>
+            <p style="font-size:.85rem;color:var(--gray-600);margin-top:16px;"><strong>Sources used in this estimate:</strong></p>
+            <ul id="sourcesList" style="font-size:.82rem;color:var(--gray-600);line-height:1.5;padding-left:20px;"></ul>
+            <p style="font-size:.8rem;color:var(--gray-500);margin-top:8px;">The entire model is one open file (<code>model.js</code>). Think a number's wrong? <a href="https://github.com/brcrusoe72/trueaicost" style="color:var(--blue);">Open an issue</a>.</p>
+          </details>
+        </div>
+
+        <!-- Honest note (no sales funnel) -->
+        <div class="callout" style="margin-top:32px;text-align:center;background:var(--navy);color:#fff;border:none;border-radius:12px;padding:28px;">
+          <h3 style="color:#fff;margin-bottom:8px;">This is an open model, not a quote.</h3>
+          <p style="color:rgba(255,255,255,.8);margin-bottom:18px;font-size:.95rem;">No login, no email gate, no vendor pays for placement. The math above is fully open and meant to be challenged. If a number looks off for your case, change the inputs — or change the model and send a PR.</p>
+          <a href="https://github.com/brcrusoe72/trueaicost" class="btn" style="background:#fff;color:var(--navy);font-weight:700;padding:12px 28px;border-radius:8px;text-decoration:none;display:inline-block;">View the source & methodology →</a>
+        </div>
+
+        <div style="text-align:center;margin-top:24px;" class="no-print">
+          <button class="btn btn-primary" onclick="window.print()">📄 Download as PDF</button>
+          <button class="btn btn-outline" style="margin-left:12px;" onclick="nextStep(1);resetCalc();">Start Over</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="model.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    // State (project type only; the rest is read from the form on submit)
+    let state = { projectType: '' };
+
+    // Project type selection
+    document.querySelectorAll('#projectTypes .option-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('#projectTypes .option-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        state.projectType = card.dataset.value;
+        document.getElementById('btn1').disabled = false;
+      });
+    });
+
+    function nextStep(n) {
+      document.querySelectorAll('.calc-step').forEach(s => s.style.display = 'none');
+      document.getElementById('step' + n).style.display = 'block';
+      document.querySelectorAll('.step').forEach((s, i) => {
+        s.classList.remove('active', 'done');
+        if (i + 1 < n) s.classList.add('done');
+        if (i + 1 === n) s.classList.add('active');
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetCalc() {
+      state = { projectType: '' };
+      document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+      document.getElementById('btn1').disabled = true;
+      document.getElementById('vendorQuote').value = '';
+      document.getElementById('vendorTimeline').value = '';
+      document.querySelectorAll('.included').forEach(c => c.checked = false);
+    }
+
+    const BASIS_COLOR = { cited: 'var(--green)', calibrated: 'var(--orange)', heuristic: 'var(--red)' };
+
+    // The cost model lives in model.js (open + unit-tested). This file only
+    // collects inputs, calls the model, and renders the result.
+    function calculateResults() {
+      const inputs = {
+        projectType: state.projectType,
+        industry: document.getElementById('industry').value || 'other',
+        companySize: document.getElementById('companySize').value || 'mid',
+        itMaturity: +document.getElementById('itMaturity').value,
+        dataReadiness: +document.getElementById('dataReadiness').value,
+        vendorQuote: +document.getElementById('vendorQuote').value || 0,
+        vendorTimeline: +document.getElementById('vendorTimeline').value || 0,
+        included: [...document.querySelectorAll('.included:checked')].map(c => c.value),
+      };
+
+      const r = TrueAICostModel.estimateAICost(inputs);
+
+      // Headline costs
+      document.getElementById('costLow').textContent = fmtCurrency(r.tco.low);
+      document.getElementById('costMid').textContent = fmtCurrency(r.tco.mid);
+      document.getElementById('costHigh').textContent = fmtCurrency(r.tco.high);
+
+      // Cost range chart
+      const ctx1 = document.getElementById('costRangeChart').getContext('2d');
+      if (window._chart1) window._chart1.destroy();
+      window._chart1 = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+          labels: ['Best Case', 'Most Likely', 'Worst Case'],
+          datasets: [{ data: [r.tco.low, r.tco.mid, r.tco.high], backgroundColor: ['#38a169', '#ed8936', '#e53e3e'], borderRadius: 6 }]
+        },
+        options: {
+          indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => fmtCurrency(c.raw) } } },
+          scales: { x: { ticks: { callback: v => fmtCurrency(v) } } }
+        }
+      });
+
+      // Breakdown chart
+      const ctx2 = document.getElementById('breakdownChart').getContext('2d');
+      if (window._chart2) window._chart2.destroy();
+      window._chart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: r.breakdown.map(d => d.category),
+          datasets: [{ data: r.breakdown.map(d => d.amount), backgroundColor: ['#1a365d', '#2a4a7f', '#3b6aad', '#ed8936', '#f6ad55', '#cbd5e0'], borderRadius: 4 }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => fmtCurrency(c.raw) + ' (' + Math.round(c.raw / r.tco.mid * 100) + '%)' } } },
+          scales: { y: { ticks: { callback: v => fmtCurrency(v) } } }
+        }
+      });
+
+      // Build vs Buy vs Hybrid
+      const bbh = r.buildBuyHybrid;
+      document.getElementById('buildBuyGrid').innerHTML = `
+        <div class="compare-card">
+          <h3>Build</h3>
+          <div class="compare-price">${fmtCurrency(bbh.build.cost)}<small>/3yr</small></div>
+          <ul style="text-align:left;margin-top:12px;font-size:.85rem;list-style:none;">
+            <li>✅ Full control & customization</li>
+            <li>✅ No vendor lock-in</li>
+            <li>⚠️ 6–18 months to production</li>
+            <li>⚠️ ~${bbh.build.successPct}% reach production</li>
+            <li>❌ Requires ML team</li>
+          </ul>
+        </div>
+        <div class="compare-card highlight">
+          <h3>Buy (SaaS/API)</h3>
+          <div class="compare-price">${fmtCurrency(bbh.buy.cost)}<small>/3yr</small></div>
+          <ul style="text-align:left;margin-top:12px;font-size:.85rem;list-style:none;">
+            <li>✅ 2–8 weeks to start</li>
+            <li>✅ ~${bbh.buy.successPct}% reach production</li>
+            <li>✅ Managed infrastructure</li>
+            <li>⚠️ Limited customization</li>
+            <li>❌ High vendor lock-in</li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <h3>Hybrid</h3>
+          <div class="compare-price">${fmtCurrency(bbh.hybrid.cost)}<small>/3yr</small></div>
+          <ul style="text-align:left;margin-top:12px;font-size:.85rem;list-style:none;">
+            <li>✅ Best balance of control/speed</li>
+            <li>✅ Open models + cloud infra</li>
+            <li>✅ ~${bbh.hybrid.successPct}% reach production</li>
+            <li>⚠️ Still needs some ML expertise</li>
+            <li>⚠️ 3–9 months to production</li>
+          </ul>
+        </div>
+      `;
+
+      // Risk score
+      const risk = r.risk.score;
+      const riskClass = risk < 40 ? 'risk-low' : risk < 70 ? 'risk-med' : 'risk-high';
+      document.getElementById('riskBadge').innerHTML = `<span class="risk-badge ${riskClass}">${risk}/100 — ${r.risk.label}</span>`;
+      document.getElementById('riskExplain').textContent = risk >= 70
+        ? 'Your combination of data readiness, IT maturity, and project complexity puts this in a high-risk category. Consider a phased approach.'
+        : risk >= 40
+        ? 'Moderate risk — achievable with proper planning and realistic timelines.'
+        : 'Lower risk profile — but still budget for the unexpected.';
+
+      // Success probability
+      document.getElementById('successProb').textContent = r.success.pct + '%';
+
+      // Timeline
+      const tl = r.timeline;
+      document.getElementById('timelineGrid').innerHTML = `
+        <div><strong style="color:var(--navy);">Proof of Concept:</strong> ${tl.poc}</div>
+        <div><strong style="color:var(--navy);">Production Ready:</strong> ${tl.prod}</div>
+        <div><strong style="color:var(--navy);">Full Adoption:</strong> ${tl.adopt}</div>
+        <div><strong style="color:var(--navy);">Positive ROI:</strong> ${tl.roi}</div>
+      `;
+
+      // Vendor callout (honest: two distinct facts, both driven by your inputs)
+      const vc = document.getElementById('vendorCallout');
+      if (r.vendorGap) {
+        const g = r.vendorGap;
+        document.getElementById('vendorQuoteDisplay').textContent = fmtCurrency(g.quote);
+        document.getElementById('vendorVsTrue').textContent = g.quoteVsTruePct + '%';
+        document.getElementById('vendorScope').textContent = g.scopeCoveredPct + '%';
+        document.getElementById('vendorGap').textContent = g.gap > 0 ? fmtCurrency(g.gap) : '$0';
+        const tn = document.getElementById('vendorTimelineNote');
+        if (g.vendorTimeline > 0) {
+          tn.textContent = `Their ${g.vendorTimeline}-month timeline is more realistically ~${g.realisticTimelineMonths} months (vendor timelines run ~2.5× short, Gartner 2024).`;
+          tn.style.display = 'block';
+        } else {
+          tn.style.display = 'none';
+        }
+        vc.style.display = 'block';
+      } else {
+        vc.style.display = 'none';
+      }
+
+      // Show your work: assumptions trace + sources
+      const at = document.getElementById('assumptionsTable');
+      at.innerHTML = '<tr><th style="text-align:left;padding:6px;">Step</th><th style="text-align:left;padding:6px;">Applied</th><th style="text-align:left;padding:6px;">Basis</th></tr>' +
+        r.assumptions.map(a => `<tr>
+          <td style="padding:6px;"><strong>${a.label}</strong>${a.note ? `<div style="color:var(--gray-500);font-size:.78rem;">${a.note}</div>` : ''}</td>
+          <td style="padding:6px;white-space:nowrap;">${a.value}</td>
+          <td style="padding:6px;"><span style="color:${BASIS_COLOR[a.basis] || '#666'};font-weight:600;text-transform:capitalize;">${a.basis}</span></td>
+        </tr>`).join('');
+
+      const sl = document.getElementById('sourcesList');
+      sl.innerHTML = Object.keys(r.sources).map(k => {
+        const s = r.sources[k];
+        const link = s.url ? ` — <a href="${s.url}" target="_blank" rel="noopener" style="color:var(--blue);">link</a>` : '';
+        return `<li style="margin-bottom:6px;"><strong>${s.label}</strong>${link}<br><span style="color:var(--gray-500);">${s.note}</span></li>`;
+      }).join('');
+
+      nextStep(4);
+    }
+  </script>
+</body>
+</html>

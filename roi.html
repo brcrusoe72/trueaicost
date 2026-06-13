@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROI Reality Check — TrueAICost.com</title>
+  <meta name="description" content="See when your AI investment actually breaks even. Accounts for implementation delays, accuracy ramp-up, and adoption curves.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <section class="hero" style="padding:48px 0 36px;">
+    <div class="container">
+      <h1>ROI Reality Check</h1>
+      <p>Vendors promise ROI in 6 months. Reality says 18–36. See your actual breakeven timeline.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <div class="card" style="margin-bottom:32px;">
+        <h3 style="color:var(--navy);margin-bottom:20px;">Your Inputs</h3>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Expected Efficiency Gain (%)</label>
+            <input type="number" id="effGain" value="30" min="1" max="100">
+            <div class="form-help">e.g., 30% = you expect processes to be 30% faster/cheaper</div>
+          </div>
+          <div class="form-group">
+            <label>Current Annual Process Cost ($)</label>
+            <input type="number" id="processCost" value="500000" placeholder="e.g., 500000">
+            <div class="form-help">Total annual cost of the process AI will improve</div>
+          </div>
+          <div class="form-group">
+            <label>Number of Affected Employees</label>
+            <input type="number" id="employees" value="20" min="1">
+          </div>
+          <div class="form-group">
+            <label>Estimated AI Project Cost ($)</label>
+            <input type="number" id="aiCost" value="300000" placeholder="e.g., 300000">
+            <div class="form-help">Use our <a href="calculator.html">Calculator</a> to estimate this</div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:16px;">
+          <button class="btn btn-primary" onclick="calculateROI()">Calculate ROI Timeline →</button>
+        </div>
+      </div>
+
+      <div id="results" style="display:none;">
+        <!-- Optimistic vs Realistic -->
+        <div class="grid-2" style="margin-bottom:24px;">
+          <div class="card" style="text-align:center;border-top:4px solid var(--orange);">
+            <div style="font-size:.85rem;color:var(--gray-500);margin-bottom:4px;">🌈 Vendor's Optimistic View</div>
+            <div style="font-size:2.5rem;font-weight:800;color:var(--orange);" id="optimisticBreakeven"></div>
+            <div style="font-size:.9rem;color:var(--gray-500);">to breakeven</div>
+          </div>
+          <div class="card" style="text-align:center;border-top:4px solid var(--navy);">
+            <div style="font-size:.85rem;color:var(--gray-500);margin-bottom:4px;">📊 Realistic Estimate</div>
+            <div style="font-size:2.5rem;font-weight:800;color:var(--navy);" id="realisticBreakeven"></div>
+            <div style="font-size:.9rem;color:var(--gray-500);">to breakeven</div>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-bottom:24px;">
+          <h4>Why the difference?</h4>
+          <p id="whyDiff"></p>
+        </div>
+
+        <!-- Timeline chart -->
+        <div class="card" style="margin-bottom:24px;">
+          <h3 style="color:var(--navy);margin-bottom:16px;">Cumulative ROI Timeline (36 months)</h3>
+          <div class="chart-container" style="max-width:100%;height:350px;"><canvas id="roiChart"></canvas></div>
+          <p class="citation" style="margin-top:8px;">Realistic model accounts for: 2.5× implementation delay (Gartner 2024), 6-month accuracy ramp-up period, S-curve adoption (Rogers diffusion model), and quarterly retraining costs.</p>
+        </div>
+
+        <!-- Assumptions -->
+        <div class="card" style="margin-bottom:24px;">
+          <h3 style="color:var(--navy);margin-bottom:16px;">Model Assumptions</h3>
+          <div class="grid-2" id="assumptions"></div>
+        </div>
+
+        <div class="callout callout-danger" id="neverCallout" style="display:none;">
+          <h4>⚠️ This project may never break even</h4>
+          <p>Based on your inputs, the realistic ROI doesn't turn positive within 3 years. Consider: reducing scope, choosing a simpler solution (automation vs AI), or waiting for costs to drop (30–40% annually).</p>
+        </div>
+
+        <div style="text-align:center;margin-top:24px;" class="no-print">
+          <button class="btn btn-primary" onclick="window.print()">📄 Download as PDF</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    let roiChart;
+
+    function calculateROI() {
+      const effGain = +document.getElementById('effGain').value / 100;
+      const processCost = +document.getElementById('processCost').value;
+      const employees = +document.getElementById('employees').value;
+      const aiCost = +document.getElementById('aiCost').value;
+
+      const annualSavingsPotential = processCost * effGain;
+      const monthlySavingsFull = annualSavingsPotential / 12;
+
+      // Optimistic model: immediate full savings after 3-month implementation
+      const implMonthsOpt = 3;
+      let optimisticCum = [];
+      let cumOpt = -aiCost;
+      for (let m = 1; m <= 36; m++) {
+        if (m <= implMonthsOpt) {
+          // spending, no savings
+        } else {
+          cumOpt += monthlySavingsFull;
+        }
+        optimisticCum.push(cumOpt);
+      }
+
+      // Realistic model
+      const implMonthsReal = Math.round(implMonthsOpt * 2.5); // 2.5x delay
+      const rampMonths = 6; // accuracy ramp-up
+      const adoptionHalflife = 8; // months to 50% adoption
+      const retrainCostQuarterly = aiCost * 0.03; // 3% of project cost per retrain
+      const trueCost = aiCost * 1.3; // 30% overrun on average
+
+      let realisticCum = [];
+      let cumReal = -trueCost;
+      for (let m = 1; m <= 36; m++) {
+        // Quarterly retrain cost
+        if (m > implMonthsReal && m % 3 === 0) cumReal -= retrainCostQuarterly;
+
+        if (m <= implMonthsReal) {
+          // Implementation phase — no savings
+        } else {
+          const monthsSinceLaunch = m - implMonthsReal;
+          // Accuracy ramp: starts at 50%, reaches target over rampMonths
+          const accuracyFactor = Math.min(1, 0.5 + 0.5 * (monthsSinceLaunch / rampMonths));
+          // Adoption S-curve
+          const adoptionFactor = 1 / (1 + Math.exp(-(monthsSinceLaunch - adoptionHalflife) / 2.5));
+          cumReal += monthlySavingsFull * accuracyFactor * adoptionFactor;
+        }
+        realisticCum.push(cumReal);
+      }
+
+      // Find breakeven months
+      const optBreakeven = optimisticCum.findIndex(v => v >= 0) + 1;
+      const realBreakeven = realisticCum.findIndex(v => v >= 0) + 1;
+
+      document.getElementById('optimisticBreakeven').textContent = optBreakeven > 0 ? optBreakeven + ' months' : '36+ months';
+      document.getElementById('realisticBreakeven').textContent = realBreakeven > 0 ? realBreakeven + ' months' : '36+ months';
+
+      document.getElementById('whyDiff').innerHTML = `
+        <strong>Implementation delays:</strong> Projects take 2.5× longer than quoted (${implMonthsOpt} months quoted → ~${implMonthsReal} months actual).<br>
+        <strong>Accuracy ramp-up:</strong> Models start at ~50% of target accuracy and take ~6 months to reach full performance.<br>
+        <strong>Adoption curve:</strong> Employee adoption follows an S-curve — reaching 50% at ~${adoptionHalflife} months post-launch.<br>
+        <strong>Hidden costs:</strong> Budget for 30% cost overrun and quarterly retraining (~${fmtCurrency(retrainCostQuarterly)}/quarter).
+      `;
+
+      document.getElementById('neverCallout').style.display = realBreakeven === 0 ? 'block' : 'none';
+
+      document.getElementById('assumptions').innerHTML = `
+        <div><strong>Annual savings potential:</strong> ${fmtCurrency(annualSavingsPotential)}</div>
+        <div><strong>True project cost (with overrun):</strong> ${fmtCurrency(trueCost)}</div>
+        <div><strong>Realistic implementation:</strong> ~${implMonthsReal} months</div>
+        <div><strong>Quarterly retraining cost:</strong> ${fmtCurrency(retrainCostQuarterly)}</div>
+        <div><strong>Accuracy ramp-up:</strong> 6 months to full performance</div>
+        <div><strong>Adoption half-life:</strong> ${adoptionHalflife} months to 50%</div>
+      `;
+
+      // Chart
+      const labels = Array.from({length: 36}, (_, i) => 'M' + (i + 1));
+      if (roiChart) roiChart.destroy();
+      roiChart = new Chart(document.getElementById('roiChart'), {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            {
+              label: 'Optimistic (Vendor View)',
+              data: optimisticCum,
+              borderColor: 'rgba(237,137,54,0.8)',
+              backgroundColor: 'rgba(237,137,54,0.1)',
+              borderDash: [6, 3],
+              fill: false,
+              tension: 0.3,
+              pointRadius: 0,
+              borderWidth: 2,
+            },
+            {
+              label: 'Realistic',
+              data: realisticCum,
+              borderColor: '#1a365d',
+              backgroundColor: 'rgba(26,54,93,0.1)',
+              fill: true,
+              tension: 0.3,
+              pointRadius: 0,
+              borderWidth: 3,
+            },
+            {
+              label: 'Breakeven',
+              data: Array(36).fill(0),
+              borderColor: 'rgba(0,0,0,0.2)',
+              borderDash: [2, 2],
+              pointRadius: 0,
+              borderWidth: 1,
+              fill: false,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            tooltip: { callbacks: { label: c => c.dataset.label + ': ' + fmtCurrency(Math.round(c.raw)) } },
+            legend: { position: 'bottom' },
+          },
+          scales: {
+            y: { ticks: { callback: v => fmtCurrency(v) } },
+          }
+        }
+      });
+
+      document.getElementById('results').style.display = 'block';
+      document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

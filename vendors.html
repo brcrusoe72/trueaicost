@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Vendor Comparison — TrueAICost.com</title>
+  <meta name="description" content="An opinionated, criteria-based read of major AI/ML platforms: cost transparency, lock-in, SMB fit, hidden fees, and true cost at scale. Scoring rubric stated up front.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <section class="hero" style="padding:48px 0 36px;">
+    <div class="container">
+      <h1>Vendor Comparison Tool</h1>
+      <p>An opinionated, side-by-side read of major AI/ML platforms — with the scoring criteria stated up front, so you can check the reasoning and disagree.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Platform Scorecard</h2>
+      <p class="section-sub">Five dimensions that drive total cost of ownership. Higher is always better for the buyer.</p>
+
+      <div class="callout" style="margin-bottom:24px;">
+        <h4>How these scores work — and what they aren't</h4>
+        <p style="margin-bottom:10px;">Each score is a <strong>qualitative 0–10 judgment</strong> against a stated test, not a measurement. Higher = better for you, the buyer:</p>
+        <ul style="font-size:.9rem;line-height:1.7;margin:0 0 10px 20px;">
+          <li><strong>Cost Transparency</strong> — can you see real pricing without a sales call? <em>10 = full public pricing · 1 = quote-gated / enterprise-only.</em></li>
+          <li><strong>Freedom from Lock-in</strong> — how hard is it to leave (proprietary formats, data export, contract length)? <em>10 = open formats, easy export · 1 = proprietary stack, long contracts.</em></li>
+          <li><strong>SMB-Friendly</strong> — can a small team adopt it without a six-figure floor? <em>10 = free / low entry · 1 = enterprise minimums.</em></li>
+          <li><strong>Freedom from Hidden Fees</strong> — egress, premium support, compute surprises? <em>10 = what you see is what you pay · 1 = many add-ons.</em></li>
+          <li><strong>Support</strong> — quality and availability of help. <em>10 = strong enterprise support · low = community-only.</em></li>
+        </ul>
+        <p style="font-size:.88rem;color:var(--gray-600);margin:0;">These are <strong>one practitioner's judgments</strong> from public pricing pages, G2 / Gartner Peer Insights reviews (2024–2025), and hands-on use — <strong>not audited, not vendor-confirmed, and not sponsored</strong>. Reasonable people will disagree on individual scores; that's expected. If you think one is wrong, <a href="https://github.com/brcrusoe72/trueaicost/issues" style="color:var(--blue);">open an issue with your reasoning</a> and it changes in the open.</p>
+      </div>
+
+      <div style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;justify-content:center;" class="no-print">
+        <button class="btn btn-sm btn-primary vendor-tab active" data-vendor="all">All Platforms</button>
+        <button class="btn btn-sm btn-outline vendor-tab" data-vendor="datarobot">DataRobot</button>
+        <button class="btn btn-sm btn-outline vendor-tab" data-vendor="dataiku">Dataiku</button>
+        <button class="btn btn-sm btn-outline vendor-tab" data-vendor="c3ai">C3.ai</button>
+        <button class="btn btn-sm btn-outline vendor-tab" data-vendor="azure">Azure AI</button>
+        <button class="btn btn-sm btn-outline vendor-tab" data-vendor="sagemaker">AWS SageMaker</button>
+        <button class="btn btn-sm btn-outline vendor-tab" data-vendor="vertex">Google Vertex AI</button>
+        <button class="btn btn-sm btn-outline vendor-tab" data-vendor="huggingface">HuggingFace</button>
+        <button class="btn btn-sm btn-outline vendor-tab" data-vendor="opensource">Open Source Stack</button>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="data-table" id="vendorTable">
+          <thead>
+            <tr>
+              <th>Platform</th>
+              <th>Cost Transparency</th>
+              <th>Freedom from Lock-in</th>
+              <th>SMB-Friendly</th>
+              <th>Freedom from Hidden Fees</th>
+              <th>Support</th>
+              <th>Overall</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rendered by JS (script below); these rows are a no-JS fallback and mirror the model. -->
+            <tr><td><strong>DataRobot</strong></td><td style="color:var(--red);font-weight:600;">3/10</td><td style="color:var(--red);font-weight:600;">2/10</td><td style="color:var(--red);font-weight:600;">2/10</td><td style="color:var(--red);font-weight:600;">3/10</td><td style="color:var(--green);font-weight:700;">7/10</td><td style="font-weight:700;color:var(--navy);">3.4</td></tr>
+            <tr><td><strong>Dataiku</strong></td><td style="color:var(--orange);font-weight:600;">5/10</td><td style="color:var(--orange);font-weight:600;">5/10</td><td style="color:var(--orange);font-weight:600;">4/10</td><td style="color:var(--orange);font-weight:600;">5/10</td><td style="color:var(--green);font-weight:700;">7/10</td><td style="font-weight:700;color:var(--navy);">5.2</td></tr>
+            <tr><td><strong>C3.ai</strong></td><td style="color:var(--red);font-weight:600;">2/10</td><td style="color:var(--red);font-weight:600;">1/10</td><td style="color:var(--red);font-weight:600;">1/10</td><td style="color:var(--red);font-weight:600;">2/10</td><td style="color:var(--orange);font-weight:600;">6/10</td><td style="font-weight:700;color:var(--navy);">2.4</td></tr>
+            <tr><td><strong>Azure AI</strong></td><td style="color:var(--orange);font-weight:600;">6/10</td><td style="color:var(--orange);font-weight:600;">5/10</td><td style="color:var(--orange);font-weight:600;">6/10</td><td style="color:var(--orange);font-weight:600;">5/10</td><td style="color:var(--orange);font-weight:600;">6/10</td><td style="font-weight:700;color:var(--navy);">5.6</td></tr>
+            <tr><td><strong>AWS SageMaker</strong></td><td style="color:var(--orange);font-weight:600;">5/10</td><td style="color:var(--orange);font-weight:600;">5/10</td><td style="color:var(--orange);font-weight:600;">5/10</td><td style="color:var(--orange);font-weight:600;">4/10</td><td style="color:var(--orange);font-weight:600;">6/10</td><td style="font-weight:700;color:var(--navy);">5.0</td></tr>
+            <tr><td><strong>Google Vertex AI</strong></td><td style="color:var(--orange);font-weight:600;">6/10</td><td style="color:var(--orange);font-weight:600;">5/10</td><td style="color:var(--orange);font-weight:600;">6/10</td><td style="color:var(--orange);font-weight:600;">6/10</td><td style="color:var(--orange);font-weight:600;">5/10</td><td style="font-weight:700;color:var(--navy);">5.6</td></tr>
+            <tr><td><strong>HuggingFace</strong></td><td style="color:var(--green);font-weight:700;">9/10</td><td style="color:var(--green);font-weight:700;">9/10</td><td style="color:var(--green);font-weight:700;">9/10</td><td style="color:var(--green);font-weight:700;">9/10</td><td style="color:var(--orange);font-weight:600;">4/10</td><td style="font-weight:700;color:var(--navy);">8.0</td></tr>
+            <tr><td><strong>Open Source Stack</strong></td><td style="color:var(--green);font-weight:700;">10/10</td><td style="color:var(--green);font-weight:700;">10/10</td><td style="color:var(--green);font-weight:700;">7/10</td><td style="color:var(--green);font-weight:700;">10/10</td><td style="color:var(--red);font-weight:600;">3/10</td><td style="font-weight:700;color:var(--navy);">8.0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="citation" style="margin-top:12px;">Scores are qualitative 0–10 judgments (higher = better for the buyer); see the rubric above for what each one means and how it's derived. Overall is the simple average of the five.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Radar Comparison</h2>
+      <p class="section-sub">Select up to 3 platforms to compare visually</p>
+      <div style="display:flex;gap:12px;justify-content:center;margin-bottom:24px;flex-wrap:wrap;" class="no-print">
+        <select id="radar1"><option value="">Platform 1</option></select>
+        <select id="radar2"><option value="">Platform 2</option></select>
+        <select id="radar3"><option value="">Platform 3</option></select>
+        <button class="btn btn-primary btn-sm" onclick="updateRadar()">Compare</button>
+      </div>
+      <div class="chart-container" style="max-width:500px;height:400px;"><canvas id="radarChart"></canvas></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">True Cost at Scale</h2>
+      <p class="section-sub">Rough all-in spend per year at different team sizes — not just the sticker price</p>
+      <div style="overflow-x:auto;">
+        <table class="data-table" id="scaleTable">
+          <thead>
+            <tr>
+              <th>Platform</th>
+              <th>10 Users/yr</th>
+              <th>50 Users/yr</th>
+              <th>100 Users/yr</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rendered by JS; no-JS fallback below. -->
+            <tr><td><strong>DataRobot</strong></td><td>$120K–$180K</td><td>$250K–$400K</td><td>$400K–$650K</td><td style="font-size:.85rem;">Enterprise pricing, six-figure minimums typical. Strong AutoML. Proprietary platform — budget for migration cost if you leave.</td></tr>
+            <tr><td><strong>Dataiku</strong></td><td>$50K–$90K</td><td>$150K–$280K</td><td>$280K–$450K</td><td style="font-size:.85rem;">Free tier available. Strong collaboration features. Some lock-in on proprietary recipes.</td></tr>
+            <tr><td><strong>C3.ai</strong></td><td>$200K–$350K</td><td>$500K–$800K</td><td>$800K–$1.5M</td><td style="font-size:.85rem;">Enterprise-focused: long contracts and high entry cost typical. Built for large deployments rather than small teams.</td></tr>
+            <tr><td><strong>Azure AI</strong></td><td>$15K–$40K</td><td>$60K–$150K</td><td>$120K–$300K</td><td style="font-size:.85rem;">Pay-as-you-go. Strong fit if already in the Microsoft ecosystem. Compute costs can surprise.</td></tr>
+            <tr><td><strong>AWS SageMaker</strong></td><td>$18K–$45K</td><td>$70K–$160K</td><td>$140K–$320K</td><td style="font-size:.85rem;">Many SKUs and a steep learning curve. Powerful. Watch egress fees.</td></tr>
+            <tr><td><strong>Google Vertex AI</strong></td><td>$12K–$35K</td><td>$50K–$130K</td><td>$100K–$260K</td><td style="font-size:.85rem;">Among the clearest public pricing of the big three. Strong ML tooling. Lighter enterprise support.</td></tr>
+            <tr><td><strong>HuggingFace</strong></td><td>$2K–$10K</td><td>$8K–$40K</td><td>$20K–$80K</td><td style="font-size:.85rem;">Open-weight models, generous free tier. You own the infra burden. Community support on the free tier.</td></tr>
+            <tr><td><strong>Open Source Stack</strong></td><td>$5K–$25K</td><td>$20K–$80K</td><td>$50K–$150K</td><td style="font-size:.85rem;">MLflow + open-weight models + cloud VM. Maximum control and portability. Requires ML engineering talent ($120K–$180K/yr).</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="citation" style="margin-top:12px;">Rough ranges, not quotes — they include licensing, compute, storage, and a typical support tier, but <strong>not</strong> internal headcount or integration. Sources: vendor pricing pages (Q1 2026), G2 reviews, Gartner Peer Insights.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="callout">
+        <h4>💡 Insider Tip: Use Open-Weight Models as Leverage</h4>
+        <p>Even if you ultimately choose a proprietary platform, having a working prototype on HuggingFace / Llama gives you negotiating power — vendors price differently when they know you can walk. Enterprise software list prices generally carry healthy margin, so a quote is rarely the floor.</p>
+        <p class="citation" style="margin-top:8px;">Practitioner judgment, not a sourced statistic.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    // All scores use one polarity: higher = better for the buyer (0–10).
+    // No inversions anywhere — Overall is a plain average of the five.
+    const vendors = {
+      datarobot:    { name: 'DataRobot', transparency: 3, lowLockin: 2, smb: 2, lowFees: 3, support: 7, cost10: '$120K–$180K', cost50: '$250K–$400K', cost100: '$400K–$650K', notes: 'Enterprise pricing, six-figure minimums typical. Strong AutoML. Proprietary platform — budget for migration cost if you leave.' },
+      dataiku:      { name: 'Dataiku', transparency: 5, lowLockin: 5, smb: 4, lowFees: 5, support: 7, cost10: '$50K–$90K', cost50: '$150K–$280K', cost100: '$280K–$450K', notes: 'Free tier available. Strong collaboration features. Some lock-in on proprietary recipes.' },
+      c3ai:         { name: 'C3.ai', transparency: 2, lowLockin: 1, smb: 1, lowFees: 2, support: 6, cost10: '$200K–$350K', cost50: '$500K–$800K', cost100: '$800K–$1.5M', notes: 'Enterprise-focused: long contracts and high entry cost typical. Built for large deployments rather than small teams.' },
+      azure:        { name: 'Azure AI', transparency: 6, lowLockin: 5, smb: 6, lowFees: 5, support: 6, cost10: '$15K–$40K', cost50: '$60K–$150K', cost100: '$120K–$300K', notes: 'Pay-as-you-go. Strong fit if already in the Microsoft ecosystem. Compute costs can surprise.' },
+      sagemaker:    { name: 'AWS SageMaker', transparency: 5, lowLockin: 5, smb: 5, lowFees: 4, support: 6, cost10: '$18K–$45K', cost50: '$70K–$160K', cost100: '$140K–$320K', notes: 'Many SKUs and a steep learning curve. Powerful. Watch egress fees.' },
+      vertex:       { name: 'Google Vertex AI', transparency: 6, lowLockin: 5, smb: 6, lowFees: 6, support: 5, cost10: '$12K–$35K', cost50: '$50K–$130K', cost100: '$100K–$260K', notes: 'Among the clearest public pricing of the big three. Strong ML tooling. Lighter enterprise support.' },
+      huggingface:  { name: 'HuggingFace', transparency: 9, lowLockin: 9, smb: 9, lowFees: 9, support: 4, cost10: '$2K–$10K', cost50: '$8K–$40K', cost100: '$20K–$80K', notes: 'Open-weight models, generous free tier. You own the infra burden. Community support on the free tier.' },
+      opensource:   { name: 'Open Source Stack', transparency: 10, lowLockin: 10, smb: 7, lowFees: 10, support: 3, cost10: '$5K–$25K', cost50: '$20K–$80K', cost100: '$50K–$150K', notes: 'MLflow + open-weight models + cloud VM. Maximum control and portability. Requires ML engineering talent ($120K–$180K/yr).' },
+    };
+
+    function scoreColor(v) {
+      if (v >= 7) return 'color:var(--green);font-weight:700;';
+      if (v >= 4) return 'color:var(--orange);font-weight:600;';
+      return 'color:var(--red);font-weight:600;';
+    }
+
+    function overall(v) {
+      return ((v.transparency + v.lowLockin + v.smb + v.lowFees + v.support) / 5).toFixed(1);
+    }
+
+    function renderVendorTable(filter) {
+      const entries = filter === 'all' ? Object.entries(vendors) : [[filter, vendors[filter]]];
+      document.querySelector('#vendorTable tbody').innerHTML = entries.map(([k, v]) => `<tr>
+          <td><strong>${v.name}</strong></td>
+          <td style="${scoreColor(v.transparency)}">${v.transparency}/10</td>
+          <td style="${scoreColor(v.lowLockin)}">${v.lowLockin}/10</td>
+          <td style="${scoreColor(v.smb)}">${v.smb}/10</td>
+          <td style="${scoreColor(v.lowFees)}">${v.lowFees}/10</td>
+          <td style="${scoreColor(v.support)}">${v.support}/10</td>
+          <td style="font-weight:700;color:var(--navy);">${overall(v)}</td>
+        </tr>`).join('');
+
+      document.querySelector('#scaleTable tbody').innerHTML = entries.map(([k, v]) => `<tr>
+        <td><strong>${v.name}</strong></td>
+        <td>${v.cost10}</td>
+        <td>${v.cost50}</td>
+        <td>${v.cost100}</td>
+        <td style="font-size:.85rem;">${v.notes}</td>
+      </tr>`).join('');
+    }
+
+    // Tab buttons
+    document.querySelectorAll('.vendor-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.vendor-tab').forEach(b => { b.classList.remove('btn-primary', 'active'); b.classList.add('btn-outline'); });
+        btn.classList.add('btn-primary', 'active');
+        btn.classList.remove('btn-outline');
+        renderVendorTable(btn.dataset.vendor);
+      });
+    });
+
+    // Radar chart
+    const radarColors = ['rgba(26,54,93,0.7)', 'rgba(237,137,54,0.7)', 'rgba(56,161,105,0.7)'];
+    const radarBg = ['rgba(26,54,93,0.15)', 'rgba(237,137,54,0.15)', 'rgba(56,161,105,0.15)'];
+    let radarChart;
+
+    function updateRadar() {
+      const picks = [
+        document.getElementById('radar1').value,
+        document.getElementById('radar2').value,
+        document.getElementById('radar3').value,
+      ].filter(Boolean);
+      if (!picks.length) return;
+      const datasets = picks.map((key, i) => {
+        const v = vendors[key];
+        return {
+          label: v.name,
+          data: [v.transparency, v.lowLockin, v.smb, v.lowFees, v.support],
+          borderColor: radarColors[i],
+          backgroundColor: radarBg[i],
+          pointBackgroundColor: radarColors[i],
+          borderWidth: 2,
+        };
+      });
+      if (radarChart) radarChart.destroy();
+      radarChart = new Chart(document.getElementById('radarChart'), {
+        type: 'radar',
+        data: {
+          labels: ['Cost Transparency', 'Freedom from Lock-in', 'SMB-Friendly', 'Freedom from Hidden Fees', 'Support'],
+          datasets,
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          scales: { r: { min: 0, max: 10, ticks: { stepSize: 2 } } },
+          plugins: { legend: { position: 'bottom' } },
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderVendorTable('all');
+      ['radar1','radar2','radar3'].forEach(id => {
+        const sel = document.getElementById(id);
+        Object.entries(vendors).forEach(([k, v]) => {
+          sel.innerHTML += `<option value="${k}">${v.name}</option>`;
+        });
+      });
+      document.getElementById('radar1').value = 'azure';
+      document.getElementById('radar2').value = 'huggingface';
+      document.getElementById('radar3').value = 'datarobot';
+      updateRadar();
+    });
+  </script>
+</body>
+</html>

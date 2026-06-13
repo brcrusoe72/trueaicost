@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Implementation Resources — TrueAICost.com</title>
+  <meta name="description" content="Free tools, checklists, templates, and reading list for AI implementation. Everything you need before signing a vendor contract.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <section class="hero" style="padding:48px 0 36px;">
+    <div class="container">
+      <h1>Resource Hub</h1>
+      <p>Free tools, checklists, and research to help you make informed AI decisions.</p>
+    </div>
+  </section>
+
+  <!-- Free Tools -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Free & Low-Cost Tools</h2>
+      <p class="section-sub">Save thousands by knowing what's already available for free</p>
+      <div class="grid-3">
+        <div class="card">
+          <div style="font-size:1.5rem;margin-bottom:8px;">🏛️</div>
+          <h3 style="color:var(--navy);font-size:1rem;margin-bottom:8px;">NIST AI Risk Management Framework</h3>
+          <p style="font-size:.85rem;color:var(--gray-600);margin-bottom:12px;">Free playbook for responsible AI deployment. Use it to ask vendors hard questions about risk management.</p>
+          <a href="https://www.nist.gov/artificial-intelligence" target="_blank" class="btn btn-outline btn-sm">Visit NIST AI →</a>
+        </div>
+        <div class="card">
+          <div style="font-size:1.5rem;margin-bottom:8px;">🏭</div>
+          <h3 style="color:var(--navy);font-size:1rem;margin-bottom:8px;">MEP Centers (Manufacturers)</h3>
+          <p style="font-size:.85rem;color:var(--gray-600);margin-bottom:12px;">Free or subsidized AI readiness consulting for manufacturers under 500 employees. Find your local center.</p>
+          <a href="https://www.nist.gov/mep" target="_blank" class="btn btn-outline btn-sm">Find Your MEP →</a>
+        </div>
+        <div class="card">
+          <div style="font-size:1.5rem;margin-bottom:8px;">☁️</div>
+          <h3 style="color:var(--navy);font-size:1rem;margin-bottom:8px;">Cloud AI Credits</h3>
+          <p style="font-size:.85rem;color:var(--gray-600);margin-bottom:12px;">$1K–$100K in free compute credits from Google (for Startups), AWS Activate, and Azure for Startups.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <a href="https://cloud.google.com/startup" target="_blank" class="btn btn-outline btn-sm">Google</a>
+            <a href="https://aws.amazon.com/activate/" target="_blank" class="btn btn-outline btn-sm">AWS</a>
+            <a href="https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0144p/" target="_blank" class="btn btn-outline btn-sm">Azure</a>
+          </div>
+        </div>
+        <div class="card">
+          <div style="font-size:1.5rem;margin-bottom:8px;">🤗</div>
+          <h3 style="color:var(--navy);font-size:1rem;margin-bottom:8px;">HuggingFace</h3>
+          <p style="font-size:.85rem;color:var(--gray-600);margin-bottom:12px;">Free model hosting, inference API, and massive open model library. The best antidote to vendor lock-in.</p>
+          <a href="https://huggingface.co" target="_blank" class="btn btn-outline btn-sm">Explore Models →</a>
+        </div>
+        <div class="card">
+          <div style="font-size:1.5rem;margin-bottom:8px;">📊</div>
+          <h3 style="color:var(--navy);font-size:1rem;margin-bottom:8px;">MLflow (Open Source)</h3>
+          <p style="font-size:.85rem;color:var(--gray-600);margin-bottom:12px;">Free experiment tracking and model registry. Does what vendors charge $2K–$10K/month for.</p>
+          <a href="https://mlflow.org" target="_blank" class="btn btn-outline btn-sm">Get MLflow →</a>
+        </div>
+        <div class="card">
+          <div style="font-size:1.5rem;margin-bottom:8px;">💰</div>
+          <h3 style="color:var(--navy);font-size:1rem;margin-bottom:8px;">SBIR/STTR Grants</h3>
+          <p style="font-size:.85rem;color:var(--gray-600);margin-bottom:12px;">Federal R&D grants for small businesses. AI/ML projects routinely funded. Phase I = $150K–$275K.</p>
+          <a href="https://www.sbir.gov" target="_blank" class="btn btn-outline btn-sm">Apply →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Checklist -->
+  <section class="section section-alt" id="checklist">
+    <div class="container" style="max-width:800px;">
+      <h2 class="section-title">10 Questions to Ask Your AI Vendor Before Signing</h2>
+      <p class="section-sub">Print this checklist and bring it to your next vendor meeting</p>
+      <div class="card">
+        <ol class="checklist" style="list-style:none;counter-reset:q;">
+          <li style="counter-increment:q;">
+            <strong>1. What percentage of your quoted price covers data preparation and cleaning?</strong>
+            <p style="font-size:.85rem;color:var(--gray-500);margin-top:4px;">If the answer is 0%, the quote is incomplete. Data prep is 25–35% of true cost.</p>
+          </li>
+          <li>
+            <strong>2. What are the ongoing monthly costs after go-live?</strong>
+            <p style="font-size:.85rem;color:var(--gray-500);margin-top:4px;">Monitoring, retraining, compute/inference, and support. Post-deployment costs exceed development costs within 12–18 months.</p>
+          </li>
+          <li>
+            <strong>3. What is your production success rate for projects like ours?</strong>
+            <p style="font-size:.85rem;color:var(--gray-500);margin-top:4px;">Industry average is ~33% for custom builds, ~55–65% for SaaS. Ask for references from similar-sized companies.</p>
+          </li>
+          <li>
+            <strong>4. What happens to our data and models if we leave?</strong>
+            <p style="font-size:.85rem;color:var(--gray-500);margin-top:4px;">Can you export in standard formats (ONNX, standard vector DBs)? Or are you locked into proprietary formats?</p>
+          </li>
+          <li>
+            <strong>5. How do inference costs scale with usage?</strong>
+            <p style="font-size:.85rem;color:var(--gray-500);margin-top:4px;">API pricing is often non-linear. A pilot at $3/day can become $45K/month at scale. Get the cost curve in writing.</p>
+          </li>
+          <li>
+            <strong>6. What accuracy SLA do you commit to (not just uptime)?</strong>
+            <p style="font-size:.85rem;color:var(--gray-500);margin-top:4px;">Most vendors guarantee uptime but not accuracy. If they won't commit to accuracy, that tells you something.</p>
+          </li>
+          <li>
+            <strong>7. How do you handle model drift and retraining?</strong>
+            <p style="font-size:.85rem;color:var(--gray-500);margin-top:4px;">Plan for quarterly retrains minimum. Each cycle costs $5K–$50K. Is this included in the quote?</p>
+          </li>
+          <li>
+            <strong>8. What change management support do you provide?</strong>
+            <p style="font-size:.85rem;color:var(--gray-500);margin-top:4px;">The #1 killer of AI projects isn't tech — it's people not using it. Budget 5–10% for training and adoption.</p>
+          </li>
+          <li>
+            <strong>9. What's your realistic timeline from POC to production?</strong>
+            <p style="font-size:.85rem;color:var(--gray-500);margin-top:4px;">Vendor promises average 2.5× optimistic. If they say 3 months, plan for 8.</p>
+          </li>
+          <li>
+            <strong>10. Can I see your compliance documentation (SOC2, GDPR, AI Act)?</strong>
+            <p style="font-size:.85rem;color:var(--gray-500);margin-top:4px;">If you're touching customer data, compliance costs $25K–$100K. Is this your cost or theirs?</p>
+          </li>
+        </ol>
+        <div style="text-align:center;margin-top:24px;" class="no-print">
+          <button class="btn btn-primary" onclick="window.print()">🖨️ Print This Checklist</button>
+        </div>
+      </div>
+      <p class="citation" style="margin-top:12px;">Based on Gartner AI implementation guidelines, McKinsey 2024, NIST AI RMF, and practitioner interviews.</p>
+    </div>
+  </section>
+
+  <!-- TCO Template -->
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <h2 class="section-title">3-Year AI TCO Spreadsheet Template</h2>
+      <p class="section-sub">Build your own total cost model before talking to any vendor</p>
+      <div class="card">
+        <table class="data-table">
+          <thead><tr><th>Category</th><th>Year 1</th><th>Year 2</th><th>Year 3</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Data Preparation & Cleaning</strong></td><td>$150K–$500K</td><td>$20K–$50K</td><td>$10K–$30K</td></tr>
+            <tr><td><strong>Model Development / Fine-tuning</strong></td><td>$100K–$300K</td><td>$30K–$80K</td><td>$30K–$80K</td></tr>
+            <tr><td><strong>Integration & MLOps</strong></td><td>$200K–$400K</td><td>$50K–$100K</td><td>$30K–$60K</td></tr>
+            <tr><td><strong>Monitoring & Retraining</strong></td><td>$48K–$150K</td><td>$96K–$300K</td><td>$96K–$300K</td></tr>
+            <tr><td><strong>Compute / Inference</strong></td><td>$24K–$100K</td><td>$60K–$200K</td><td>$80K–$250K</td></tr>
+            <tr><td><strong>Change Management & Training</strong></td><td>$50K–$150K</td><td>$20K–$40K</td><td>$10K–$20K</td></tr>
+            <tr><td><strong>Compliance / Legal</strong></td><td>$25K–$100K</td><td>$10K–$30K</td><td>$10K–$30K</td></tr>
+            <tr style="background:var(--gray-50);"><td><strong style="color:var(--navy);">TOTAL</strong></td><td><strong>$597K–$1.7M</strong></td><td><strong>$286K–$800K</strong></td><td><strong>$266K–$770K</strong></td></tr>
+            <tr style="background:#fff8f0;"><td><strong style="color:var(--orange);">3-YEAR TCO</strong></td><td colspan="3" style="text-align:center;"><strong style="font-size:1.2rem;color:var(--orange);">$1.15M–$3.27M</strong></td></tr>
+          </tbody>
+        </table>
+        <p class="citation" style="margin-top:8px;">Ranges for mid-market companies (200–2000 employees). SMBs: multiply by 0.4–0.7. Enterprise: multiply by 1.5–3×.</p>
+        <p style="font-size:.85rem;color:var(--gray-500);margin-top:12px;"><strong>Tip:</strong> Multiply your vendor's quote by 4–6× for a realistic 3-year TCO. If it still shows positive ROI, proceed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reading List -->
+  <section class="section section-alt" id="reading">
+    <div class="container" style="max-width:800px;">
+      <h2 class="section-title">Recommended Reading</h2>
+      <p class="section-sub">The best independent AI cost research — no vendor-sponsored content</p>
+      <div class="card" style="margin-bottom:16px;">
+        <h4 style="color:var(--navy);">📕 Stanford HAI AI Index Report (Annual)</h4>
+        <p style="font-size:.9rem;color:var(--gray-600);">The gold standard for AI benchmarks and trends. Free. Covers costs, capabilities, adoption, and policy.</p>
+        <a href="https://aiindex.stanford.edu/report/" target="_blank" style="font-size:.9rem;">aiindex.stanford.edu →</a>
+      </div>
+      <div class="card" style="margin-bottom:16px;">
+        <h4 style="color:var(--navy);">📗 McKinsey Global AI Survey</h4>
+        <p style="font-size:.9rem;color:var(--gray-600);">Annual survey of enterprise AI adoption, costs, and success rates. Free with email.</p>
+        <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" style="font-size:.9rem;">mckinsey.com →</a>
+      </div>
+      <div class="card" style="margin-bottom:16px;">
+        <h4 style="color:var(--navy);">📘 Gartner Hype Cycle for AI</h4>
+        <p style="font-size:.9rem;color:var(--gray-600);">Best antidote to vendor hype. Your local library likely has Gartner access — don't pay $5K for what you can read free.</p>
+        <a href="https://www.gartner.com/en/articles/what-s-new-in-artificial-intelligence-from-the-2024-gartner-hype-cycle" target="_blank" style="font-size:.9rem;">gartner.com →</a>
+      </div>
+      <div class="card" style="margin-bottom:16px;">
+        <h4 style="color:var(--navy);">📙 NIST AI Risk Management Framework</h4>
+        <p style="font-size:.9rem;color:var(--gray-600);">Practical framework for managing AI risk. Essential reading before any deployment.</p>
+        <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" style="font-size:.9rem;">nist.gov →</a>
+      </div>
+      <div class="card" style="margin-bottom:16px;">
+        <h4 style="color:var(--navy);">📒 Anaconda State of Data Science</h4>
+        <p style="font-size:.9rem;color:var(--gray-600);">Ground-truth survey from practitioners on where time and money actually go — ~38% of it on data prep &amp; cleaning.</p>
+        <a href="https://www.anaconda.com/state-of-data-science-report" target="_blank" style="font-size:.9rem;">anaconda.com →</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+  <script src="shared.js"></script>
+</body>
+</html>
