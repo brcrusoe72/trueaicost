@@ -39,9 +39,11 @@
    * -------------------------------------------------------------------------*/
   var SOURCES = {
     sp_global_2025: {
-      label: 'S&P Global Market Intelligence (2025)',
-      note: 'Enterprise AI survey. Source of the ~42% "abandoned most AI initiatives" figure.',
-      url: 'https://www.spglobal.com/marketintelligence/'
+      label: 'S&P Global Market Intelligence — VotE: AI & ML 2025',
+      note: 'Survey of 1,006 IT/line-of-business professionals (NA + Europe), May 2025. Orgs abandoning ' +
+            'most AI initiatives before production rose 17% -> 42% YoY; ~46% of projects scrapped between ' +
+            'PoC and broad adoption.',
+      url: 'https://www.spglobal.com/market-intelligence/en/news-insights/research/ai-experiences-rapid-adoption-but-with-mixed-outcomes-highlights-from-vote-ai-machine-learning'
     },
     rand_2024: {
       label: 'RAND RR-A2680-1 (2024)',
@@ -56,9 +58,10 @@
       url: 'https://aiindex.stanford.edu/report/'
     },
     gartner_2024: {
-      label: 'Gartner AI surveys (2024)',
-      note: 'POC-to-production conversion and timeline optimism. Gartner has stated ~30% of ' +
-            'generative-AI projects are abandoned after PoC — the basis for the low build success rate.',
+      label: 'Gartner (2024)',
+      note: 'Press release (July 2024): Gartner PREDICTED at least 30% of generative-AI projects would be ' +
+            'abandoned after proof of concept by end of 2025 — a forecast, not a measured outcome. Basis for ' +
+            'the low build success rate and timeline-optimism factor.',
       url: 'https://www.gartner.com/en/newsroom'
     },
     mckinsey_2024: {
@@ -67,10 +70,12 @@
       url: 'https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai'
     },
     anaconda_2024: {
-      label: 'Anaconda State of Data Science (2024)',
-      note: 'Data scientists report ~38% of time on data prep & cleaning. The widely-repeated ' +
-            '"80% of time on data prep" figure is folklore (CrowdFlower 2016) and is deliberately NOT used here.',
-      url: 'https://www.anaconda.com/resources/whitepapers'
+      label: 'Data-prep share (industry surveys)',
+      note: 'Data preparation is consistently the single largest time/cost category in practitioner surveys, ' +
+            'well above the model-building work vendor quotes price. The widely-repeated "80% of time on data ' +
+            'prep" figure is unsourced folklore (CrowdFlower, ~2016) and is NOT used here; the 30% data-prep ' +
+            'cost share is a calibrated estimate, not a cited statistic.',
+      url: ''
     },
     practitioner: {
       label: 'Practitioner heuristic (not from a study)',

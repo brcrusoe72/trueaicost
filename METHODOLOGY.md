@@ -91,13 +91,18 @@ Given a quote and the line items it includes, the model reports **two separate f
 - **RAND RR-A2680-1** (2024), *The Root Causes of Failure for AI Projects* — qualitative,
   65 interviews. Informs the **risk model**. Publishes **no cost multiplier**; citing it
   for a dollar figure is overreaching (this site used to).
-- **S&P Global Market Intelligence** (2025) — enterprise AI survey; source of the **42%**
-  abandonment figure.
+- **S&P Global Market Intelligence — VotE: AI & ML 2025** — survey of 1,006 IT/line-of-business
+  professionals (NA + Europe), May 2025. Source of the abandonment figures: orgs abandoning most AI
+  initiatives before production rose **17% → 42%** YoY; **~46%** of projects scrapped between PoC and
+  broad adoption. ([source](https://www.spglobal.com/market-intelligence/en/news-insights/research/ai-experiences-rapid-adoption-but-with-mixed-outcomes-highlights-from-vote-ai-machine-learning))
 - **Stanford HAI AI Index 2025** — ROI timing, adoption-vs-value gap, compute trends.
-- **Gartner AI surveys** (2024) — ~30% post-PoC abandonment; timeline optimism.
+- **Gartner** (July 2024 press release) — *predicted* ≥30% of generative-AI projects abandoned after
+  proof of concept by end of 2025 (a forecast); timeline optimism.
 - **McKinsey Global Survey on AI** (2024) — phase-level cost composition.
-- **Anaconda State of Data Science** (2024) — ~38% of time on data prep. The popular
-  "80% of time on data prep" figure is folklore (CrowdFlower 2016) and is **not used**.
+- **Data-prep share** — data preparation is consistently the single largest time/cost category in
+  practitioner surveys, well above model-building. The popular "80% of time on data prep" figure is
+  unsourced folklore (CrowdFlower, ~2016) and is **not used**. The 30% data-prep cost share in the
+  model is a calibrated estimate, not a cited statistic.
 
 ## Limitations
 

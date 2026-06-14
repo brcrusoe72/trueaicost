@@ -30,6 +30,7 @@ function getNav(activePage) {
     ['vendors.html', 'Vendors'],
     ['roi.html', 'ROI Check'],
     ['resources.html', 'Resources'],
+    ['blog.html', 'Blog'],
   ];
   const links = pages.map(([href, label]) =>
     `<li><a href="${href}" class="${activePage === href ? 'active' : ''}">${label}</a></li>`

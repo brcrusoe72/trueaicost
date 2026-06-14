@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OEE Up or Down Is Not Analytics — TrueAICost.com</title>
+  <meta name="description" content="A decade on manufacturing floors taught me why most plant AI projects don't pay off — and it isn't the algorithm. The expensive data stack changes one behavior: a daily glance at OEE.">
+  <meta property="og:title" content="OEE Up or Down Is Not Analytics">
+  <meta property="og:description" content="Why most plant AI projects don't pay off — and it isn't the algorithm.">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <article>
+    <section class="hero" style="padding:48px 0 28px;">
+      <div class="container" style="max-width:760px;">
+        <p style="text-transform:uppercase;letter-spacing:.05em;font-size:.78rem;opacity:.85;margin-bottom:8px;">Field note · Manufacturing</p>
+        <h1 style="margin-bottom:12px;">OEE Up or Down Is Not Analytics</h1>
+        <p style="font-size:1.1rem;">A decade on manufacturing floors taught me why most plant AI projects don't pay off — and it isn't the algorithm.</p>
+        <p style="font-size:.9rem;opacity:.8;margin-top:14px;">By Brian Crusoe</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:24px;">
+      <div class="container" style="max-width:720px;font-size:1.05rem;line-height:1.75;color:var(--gray-700,#374151);">
+
+        <p>In every plant I've worked in, we ran an MES. Almost no one on the floor ever opened it.</p>
+
+        <p>Management opened it — sort of. Mostly to pipe the data into a BI layer (Incorta, Power BI, pick your acronym), where the analysis came to rest on a single question: <em>is OEE up or down today?</em> Green, we move on. Red, someone asks what happened. That was the whole practice. A six-figure data stack, and the behavior it produced was a daily glance at one number.</p>
+
+        <p>I want to be precise, because it's the whole point: the expensive part was never the software license. It was that all that instrumentation changed exactly one thing about how the plant ran — it gave people a number to look at. The event data underneath — the short stops, the changeover losses, the fault codes — sat unread.</p>
+
+        <h2 style="color:var(--navy);margin:32px 0 10px;font-size:1.4rem;">The data nobody uses is a bad place to add more data</h2>
+
+        <p>Here's what "OEE up or down" can't tell you. OEE dropped — why? A short stop so brief the system never registered it? A fault the line coded "Unassigned" because nothing better fired? A flow problem three machines upstream that only showed up as starvation at the end? The single number everyone watches is the one that explains the least. The "why" lives in the event data — the part nobody opens.</p>
+
+        <p>Now bolt a predictive model on top. It flags a bearing that'll fail in nine days. Useful — <em>if someone acts on it.</em> But the person who'd act is the same person who hasn't opened the short-stop report in a year. You didn't have a model problem. You had a nobody-acts-on-the-data problem — and you just spent six figures making it worse.</p>
+
+        <h2 style="color:var(--navy);margin:32px 0 10px;font-size:1.4rem;">This is what the failure numbers are measuring</h2>
+
+        <p>I'm not guessing this is common. S&amp;P Global's 2025 survey of 1,006 companies found <strong>42% abandoned most of their AI initiatives</strong> last year — up from 17% — and that <strong>46% of projects get scrapped between pilot and broad use</strong>. Manufacturing was <strong>among the sectors reporting notably lower ROI</strong>.<sup><a href="#s1" style="color:var(--blue);text-decoration:none;">1</a></sup></p>
+
+        <p>The usual read is "the tech isn't ready." Mine, from the floor, is different: in a lot of plants the tech was never the bottleneck. The bottleneck is an organization that already ignores the signal it has. Gartner predicted <strong>30% of generative-AI projects would be abandoned after the pilot by the end of 2025</strong><sup><a href="#s2" style="color:var(--blue);text-decoration:none;">2</a></sup> — and "nobody changed what they did with the output" is, in my experience, a big part of why.</p>
+
+        <h2 style="color:var(--navy);margin:32px 0 10px;font-size:1.4rem;">The honest first move isn't AI</h2>
+
+        <p>Before you price a model, ask a cheaper question: <em>does anyone here act on the data we already collect?</em> If the answer is "we look at OEE and react when it's red," that's an organizational problem, and it's fixable for roughly the cost of nothing — get the event data in front of the people who can move it, and make the "why" as visible as the "what." Do that first and you'll know whether you even need AI. Skip it, and the model becomes one more dashboard nobody reads.</p>
+
+        <p>When you <em>are</em> ready to price the real thing, that's what I built <a href="calculator.html" style="color:var(--blue);">the calculator</a> for — it puts the full three-year cost on the table, including the integration and the change in how people actually work that vendor quotes leave out, and that's where these projects really live or die.</p>
+
+        <p>Cost is now the most common deciding factor in whether an AI project survives — and the metric these projects score worst on.<sup><a href="#s1" style="color:var(--blue);text-decoration:none;">1</a></sup> The cheapest AI win in most plants isn't AI. It's using the data you already paid for.</p>
+
+        <p style="margin-top:32px;font-weight:600;">— Brian Crusoe</p>
+
+        <hr style="margin:32px 0;border:none;border-top:1px solid var(--gray-200,#e5e7eb);">
+
+        <h3 style="font-size:1rem;color:var(--navy);">Sources</h3>
+        <ol style="font-size:.9rem;line-height:1.65;color:var(--gray-600,#4b5563);padding-left:20px;">
+          <li id="s1" style="margin-bottom:8px;">S&amp;P Global Market Intelligence, <em>Voice of the Enterprise: AI &amp; Machine Learning, Use Cases 2025</em> — survey of 1,006 IT and line-of-business professionals (North America &amp; Europe), published May 30, 2025. <a href="https://www.spglobal.com/market-intelligence/en/news-insights/research/ai-experiences-rapid-adoption-but-with-mixed-outcomes-highlights-from-vote-ai-machine-learning" target="_blank" rel="noopener" style="color:var(--blue);">spglobal.com</a></li>
+          <li id="s2">Gartner, press release: "Gartner Predicts 30% of Generative AI Projects Will Be Abandoned After Proof of Concept by End of 2025" (July 2024) — a forecast. <a href="https://www.gartner.com/en/newsroom" target="_blank" rel="noopener" style="color:var(--blue);">gartner.com/en/newsroom</a></li>
+        </ol>
+        <p style="font-size:.82rem;color:var(--gray-500,#6b7280);margin-top:14px;">Everything not footnoted above is the author's first-hand experience across multiple plants, offered as judgment, not data.</p>
+
+        <p style="margin-top:28px;"><a href="blog.html" style="color:var(--blue);">← More field notes</a></p>
+      </div>
+    </section>
+  </article>
+
+  <div id="site-footer"></div>
+  <script src="shared.js"></script>
+</body>
+</html>
