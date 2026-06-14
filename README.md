@@ -7,7 +7,7 @@ project actually costs over three years. The rest (data prep, integration, monit
 retraining, compute, change management) shows up later, after the PO is signed.
 TrueAICost puts the whole picture on one page *before* you sign — and shows its work.
 
-🔗 **Live:** https://trueaicost.com
+🔗 **Live:** https://brcrusoe72.github.io/trueaicost/
 📐 **The entire model:** [`model.js`](./model.js) — one readable file, no backend.
 
 ---

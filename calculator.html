@@ -41,12 +41,12 @@
         <h2 style="color:var(--navy);margin-bottom:8px;">What type of AI project?</h2>
         <p style="color:var(--gray-500);margin-bottom:24px;">Select the category that best describes your planned implementation.</p>
         <div class="option-grid" id="projectTypes">
-          <div class="option-card" data-value="chatbot"><div class="icon">💬</div><div class="label">Chatbot / Virtual Agent</div><div class="desc">Customer service, internal Q&A</div></div>
-          <div class="option-card" data-value="document"><div class="icon">📄</div><div class="label">Document Processing</div><div class="desc">OCR, extraction, classification</div></div>
-          <div class="option-card" data-value="predictive"><div class="icon">📈</div><div class="label">Predictive Maintenance</div><div class="desc">Equipment failure prediction</div></div>
-          <div class="option-card" data-value="quality"><div class="icon">🔬</div><div class="label">Quality Inspection</div><div class="desc">Visual inspection, defect detection</div></div>
-          <div class="option-card" data-value="custom"><div class="icon">🧠</div><div class="label">Custom ML Model</div><div class="desc">Forecasting, optimization, scoring</div></div>
-          <div class="option-card" data-value="rag"><div class="icon">📚</div><div class="label">RAG / Knowledge Base</div><div class="desc">Enterprise search, document Q&A</div></div>
+          <button type="button" class="option-card" data-value="chatbot"><div class="icon">💬</div><div class="label">Chatbot / Virtual Agent</div><div class="desc">Customer service, internal Q&A</div></button>
+          <button type="button" class="option-card" data-value="document"><div class="icon">📄</div><div class="label">Document Processing</div><div class="desc">OCR, extraction, classification</div></button>
+          <button type="button" class="option-card" data-value="predictive"><div class="icon">📈</div><div class="label">Predictive Maintenance</div><div class="desc">Equipment failure prediction</div></button>
+          <button type="button" class="option-card" data-value="quality"><div class="icon">🔬</div><div class="label">Quality Inspection</div><div class="desc">Visual inspection, defect detection</div></button>
+          <button type="button" class="option-card" data-value="custom"><div class="icon">🧠</div><div class="label">Custom ML Model</div><div class="desc">Forecasting, optimization, scoring</div></button>
+          <button type="button" class="option-card" data-value="rag"><div class="icon">📚</div><div class="label">RAG / Knowledge Base</div><div class="desc">Enterprise search, document Q&A</div></button>
         </div>
         <div style="margin-top:32px;text-align:right;">
           <button class="btn btn-primary" onclick="nextStep(2)" id="btn1" disabled>Next →</button>
@@ -58,7 +58,7 @@
         <h2 style="color:var(--navy);margin-bottom:8px;">Tell us about your company</h2>
         <p style="color:var(--gray-500);margin-bottom:24px;">This helps calibrate cost estimates to your scale. Nothing is sent anywhere — the math runs in your browser.</p>
         <div class="form-group">
-          <label>Industry</label>
+          <label for="industry">Industry</label>
           <select id="industry">
             <option value="">Select your industry</option>
             <option value="manufacturing">Manufacturing</option>
@@ -70,7 +70,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label>Number of Employees</label>
+          <label for="companySize">Number of Employees</label>
           <select id="companySize">
             <option value="">Select range</option>
             <option value="small">1–50 employees</option>
@@ -81,12 +81,12 @@
           </select>
         </div>
         <div class="form-group">
-          <label>IT Maturity (1 = spreadsheets, 5 = cloud-native + DevOps)</label>
+          <label for="itMaturity">IT Maturity (1 = spreadsheets, 5 = cloud-native + DevOps)</label>
           <input type="range" id="itMaturity" min="1" max="5" value="3">
           <div style="display:flex;justify-content:space-between;font-size:.8rem;color:var(--gray-500);"><span>1 – Basic</span><span>3 – Moderate</span><span>5 – Advanced</span></div>
         </div>
         <div class="form-group">
-          <label>Data Readiness (1 = no structured data, 5 = clean data warehouse)</label>
+          <label for="dataReadiness">Data Readiness (1 = no structured data, 5 = clean data warehouse)</label>
           <input type="range" id="dataReadiness" min="1" max="5" value="2">
           <div style="display:flex;justify-content:space-between;font-size:.8rem;color:var(--gray-500);"><span>1 – Messy</span><span>3 – Partial</span><span>5 – Ready</span></div>
         </div>
@@ -101,12 +101,12 @@
         <h2 style="color:var(--navy);margin-bottom:8px;">What has your vendor quoted?</h2>
         <p style="color:var(--gray-500);margin-bottom:24px;">If you haven't gotten a quote yet, leave these blank for industry estimates.</p>
         <div class="form-group">
-          <label>Vendor's Quoted Price ($)</label>
+          <label for="vendorQuote">Vendor's Quoted Price ($)</label>
           <input type="number" id="vendorQuote" placeholder="e.g., 150000" min="0">
           <div class="form-help">The total price on their proposal</div>
         </div>
         <div class="form-group">
-          <label>Quoted Timeline (months)</label>
+          <label for="vendorTimeline">Quoted Timeline (months)</label>
           <input type="number" id="vendorTimeline" placeholder="e.g., 3" min="0">
         </div>
         <div class="form-group">
@@ -220,7 +220,7 @@
 
   <div id="site-footer"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"></script>
   <script src="model.js"></script>
   <script src="shared.js"></script>
   <script>
@@ -229,9 +229,14 @@
 
     // Project type selection
     document.querySelectorAll('#projectTypes .option-card').forEach(card => {
+      card.setAttribute('aria-pressed', 'false');
       card.addEventListener('click', () => {
-        document.querySelectorAll('#projectTypes .option-card').forEach(c => c.classList.remove('selected'));
+        document.querySelectorAll('#projectTypes .option-card').forEach(c => {
+          c.classList.remove('selected');
+          c.setAttribute('aria-pressed', 'false');
+        });
         card.classList.add('selected');
+        card.setAttribute('aria-pressed', 'true');
         state.projectType = card.dataset.value;
         document.getElementById('btn1').disabled = false;
       });
@@ -250,7 +255,10 @@
 
     function resetCalc() {
       state = { projectType: '' };
-      document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+      document.querySelectorAll('.option-card').forEach(c => {
+        c.classList.remove('selected');
+        c.setAttribute('aria-pressed', 'false');
+      });
       document.getElementById('btn1').disabled = true;
       document.getElementById('vendorQuote').value = '';
       document.getElementById('vendorTimeline').value = '';
