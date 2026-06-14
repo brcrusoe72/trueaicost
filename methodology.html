@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Methodology &amp; Sources — TrueAICost.com</title>
+  <meta name="description" content="How TrueAICost's numbers are built — every parameter labeled cited, calibrated, or heuristic, with the research behind it and the honest caveats.">
+  <meta property="og:title" content="Methodology & Sources — TrueAICost.com">
+  <meta property="og:description" content="Every number labeled cited, calibrated, or heuristic — with the research behind it and what each source does and doesn't say.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <section class="hero" style="padding:72px 0 52px;">
+    <div class="container">
+      <span class="eyebrow">How the numbers work</span>
+      <h1>Methodology &amp; Sources</h1>
+      <p>How the numbers are built — and how honest the site is about which is which.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+
+      <h3 style="color:var(--navy);margin-top:8px;margin-bottom:8px;">It's all free and open</h3>
+      <p style="color:var(--gray-600);line-height:1.7;margin-bottom:28px;">The calculator, benchmarks, and vendor scorecard are free, with no signup and no paywall. There is no paid tier and nothing to buy. The whole cost model is one readable file — <a href="https://github.com/brcrusoe72/trueaicost/blob/main/model.js" style="color:var(--blue);">model.js</a> — so you don't have to take any number on faith.</p>
+
+      <h3 style="color:var(--navy);margin-top:24px;margin-bottom:8px;">No business model — on purpose</h3>
+      <p style="color:var(--gray-600);line-height:1.7;margin-bottom:28px;">No AI/ML vendor pays, refers, or sponsors content. No platform on the vendor scorecard knows it's being scored, and none earns a commission when you click. There's no lead capture. It's an open-source project by one person, and saying that plainly is the point — a "true cost" site funded by the vendors it scores would be a contradiction.</p>
+
+      <h3 style="color:var(--navy);margin-top:24px;margin-bottom:8px;">How cost ranges are built</h3>
+      <p style="color:var(--gray-600);line-height:1.7;margin-bottom:12px;">Every parameter in the model carries a <strong>basis</strong> label, and the calculator shows it for your specific estimate:</p>
+      <ul style="color:var(--gray-600);line-height:1.8;margin-bottom:12px;padding-left:24px;">
+        <li><strong style="color:var(--green);">cited</strong> — a specific published figure from a named study.</li>
+        <li><strong style="color:var(--orange);">calibrated</strong> — a synthesized range informed by the studies below, but not a single number any one of them publishes.</li>
+        <li><strong style="color:var(--red);">heuristic</strong> — practitioner judgment. Not from a study. These are the numbers most worth arguing with.</li>
+      </ul>
+      <p style="color:var(--gray-600);line-height:1.7;margin-bottom:28px;">Ranges are wide where the underlying data is genuinely wide. An honest 3-year range you can plan against beats a precise-looking point estimate that misleads.</p>
+
+      <p style="color:var(--gray-600);line-height:1.7;margin-bottom:12px;"><strong>Research the model is calibrated against:</strong></p>
+      <ul style="color:var(--gray-600);line-height:1.8;margin-bottom:28px;padding-left:24px;">
+        <li><strong>RAND RR-A2680-1</strong> (2024) — "The Root Causes of Failure for AI Projects." 65 practitioner interviews. <em>Qualitative — it informs the risk model, not a cost multiplier.</em></li>
+        <li><strong>S&amp;P Global Market Intelligence — VotE: AI &amp; ML 2025</strong> — survey of 1,006 IT/line-of-business professionals (North America + Europe), May 2025. Source of the abandonment figures: orgs abandoning most AI initiatives before production rose 17% → 42% YoY; ~46% of projects scrapped between PoC and broad adoption.</li>
+        <li><strong>Stanford HAI AI Index Report 2025</strong> — inference/compute cost trends (e.g., the cost to run a GPT-3.5-level query fell ~280× from Nov 2022 to Oct 2024). It does <em>not</em> publish a "time to ROI" figure — an earlier version of this site wrongly attributed an 18–36-month ROI claim to it; removed.</li>
+        <li><strong>Gartner</strong> (July 2024 press release) — <em>predicted</em> ≥30% of generative-AI projects abandoned after a proof of concept by end of 2025 (a forecast); timeline optimism.</li>
+        <li><strong>McKinsey Global Survey on AI</strong> (2024) — phase-level cost composition across industries.</li>
+        <li><strong>Data-prep share</strong> — data preparation is consistently the single largest time/cost bucket in practitioner surveys, well above model-building. The popular "80% of time on data prep" figure is unsourced folklore (CrowdFlower, ~2016) and is <em>not</em> used; the 30% data-prep cost share is a calibrated estimate, not a cited statistic.</li>
+      </ul>
+
+      <h3 style="color:var(--navy);margin-top:24px;margin-bottom:8px;">About the 2.8× multiplier</h3>
+      <p style="color:var(--gray-600);line-height:1.7;margin-bottom:28px;">The headline — a build-only quote covers ~20–35% of true 3-year cost, a ~2.8× overrun — is a <strong>practitioner heuristic, not a published statistic</strong>. It's anchored to the consistent finding (McKinsey, Gartner) that 3-year run/maintain/retrain costs dwarf the initial build. Simple projects (single-system RAG or chatbot) land closer to 2.0×; heavily regulated ones (SR 11-7, FDA SaMD) routinely exceed 4×. RAND's failure study is qualitative and publishes no multiplier — anyone citing it for a dollar figure is overreaching, and earlier versions of this site did exactly that. The number lives in <a href="https://github.com/brcrusoe72/trueaicost/blob/main/model.js" style="color:var(--blue);">model.js</a>; if you have better data, send a PR.</p>
+
+      <h3 style="color:var(--navy);margin-top:24px;margin-bottom:8px;">What I don't use</h3>
+      <p style="color:var(--gray-600);line-height:1.7;margin-bottom:32px;">Vendor-published ROI case studies are excluded — they're selection-biased (vendors publish wins, not abandoned pilots). If you find a claim on this site you can't trace to a named source or a labeled heuristic, <a href="https://github.com/brcrusoe72/trueaicost/issues" style="color:var(--blue);">open an issue</a>.</p>
+
+      <a href="calculator.html" class="btn btn-primary">Run the calculator →</a>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+  <script src="shared.js"></script>
+</body>
+</html>

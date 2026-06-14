@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://trueaicost.com">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -113,9 +113,8 @@
       <span class="kicker">Who built it</span>
       <h2 class="section-title">About</h2>
       <div style="max-width:680px;">
-        <p style="font-size:1.05rem;color:var(--gray-600);line-height:1.7;margin-bottom:16px;">TrueAICost was built by <strong>Brian Crusoe</strong> — a manufacturing operations leader with 8+ years on production floors, a Lean Six Sigma Black Belt, and hands-on experience building data pipelines and analytics systems in food &amp; CPG plants.</p>
-        <p style="font-size:1.05rem;color:var(--gray-600);line-height:1.7;margin-bottom:16px;">After watching AI projects get scoped against build-only quotes and then quietly balloon, he built the tool he wished existed: a transparent cost model where you can see — and challenge — every assumption.</p>
-        <p style="font-size:.95rem;color:var(--gray-500);line-height:1.6;margin-bottom:12px;"><strong>How this is funded: it isn't.</strong> No AI vendor pays, refers, or sponsors anything here. There's no email gate and nothing for sale. It's an open-source side project — the entire model is public so you can verify it or fork it.</p>
+        <p style="font-size:1.05rem;color:var(--gray-600);line-height:1.7;margin-bottom:16px;">TrueAICost was built by <strong>Brian Crusoe</strong> — a manufacturing operations leader with 8+ years on production floors, a Lean Six Sigma Black Belt, and hands-on experience building data pipelines and analytics systems in food &amp; CPG plants. It's the tool he wished existed after watching AI projects get scoped against build-only quotes and then quietly balloon.</p>
+        <p style="font-size:.95rem;color:var(--gray-500);line-height:1.6;margin-bottom:12px;"><strong>How this is funded: it isn't.</strong> No AI vendor pays, refers, or sponsors anything here. There's no email gate and nothing for sale. It's an open-source side project — the entire model is public so you can verify it or fork it. Built for the operators who have to make AI work after the contract is signed, not the people selling it.</p>
         <p style="font-size:.95rem;color:var(--gray-500);margin-bottom:24px;">Cost ranges are documented heuristics, calibrated to published research (RAND, S&amp;P Global, Gartner, McKinsey, Stanford HAI) and openly labeled where they're judgment calls rather than published figures.</p>
         <div style="display:flex;justify-content:flex-start;gap:16px;flex-wrap:wrap;">
           <a href="https://github.com/brcrusoe72/trueaicost" class="btn btn-outline btn-sm">View Source →</a>
@@ -126,73 +125,19 @@
   </section>
 
   <section class="section section-alt">
-    <div class="container">
-      <span class="kicker">The stance</span>
-      <h2 class="section-title">Why This Exists</h2>
-      <div class="grid-3">
-        <div class="card">
-          <div style="width:40px;height:3px;background:var(--orange);margin:0 0 18px;"></div>
-          <h3 style="color:var(--navy);margin-bottom:8px;">Built from the Floor</h3>
-          <p style="font-size:.9rem;color:var(--gray-600);">8+ years in food &amp; CPG manufacturing. Built MES data pipelines, OEE dashboards, and analytics systems that actually run in production — not demos.</p>
-        </div>
-        <div class="card">
-          <div style="width:40px;height:3px;background:var(--orange);margin:0 0 18px;"></div>
-          <h3 style="color:var(--navy);margin-bottom:8px;">Sources Shown, Not Hidden</h3>
-          <p style="font-size:.9rem;color:var(--gray-600);">Calibrated to published research (RAND, S&amp;P Global, Gartner, McKinsey, Stanford HAI) and labeled where a number is judgment rather than a cited figure. No vendor pays for placement; nothing is for sale.</p>
-        </div>
-        <div class="card">
-          <div style="width:40px;height:3px;background:var(--orange);margin:0 0 18px;"></div>
-          <h3 style="color:var(--navy);margin-bottom:8px;">For Operators, Not Buyers</h3>
-          <p style="font-size:.9rem;color:var(--gray-600);">Built for the people who have to make AI work after the contract is signed — plant managers, ops leaders, and engineers who need real numbers.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="methodology">
-    <div class="container" style="max-width:860px;">
+    <div class="container" style="max-width:720px;">
       <span class="kicker">How the numbers work</span>
-      <h2 class="section-title">Methodology &amp; Sources</h2>
-      <p class="section-sub">How the numbers are built — and how honest the site is about which is which</p>
-
-      <h3 style="color:var(--navy);margin-top:24px;margin-bottom:8px;">It's all free and open</h3>
-      <p style="color:var(--gray-600);line-height:1.7;margin-bottom:24px;">The calculator, benchmarks, and vendor scorecard are free, with no signup and no paywall. There is no paid tier and nothing to buy. The whole cost model is one readable file — <a href="https://github.com/brcrusoe72/trueaicost/blob/main/model.js" style="color:var(--blue);">model.js</a> — so you don't have to take any number on faith.</p>
-
-      <h3 style="color:var(--navy);margin-top:24px;margin-bottom:8px;">No business model — on purpose</h3>
-      <p style="color:var(--gray-600);line-height:1.7;margin-bottom:24px;">No AI/ML vendor pays, refers, or sponsors content. No platform on the vendor scorecard knows it's being scored, and none earns a commission when you click. There's no lead capture. It's an open-source project by one person, and saying that plainly is the point — a "true cost" site funded by the vendors it scores would be a contradiction.</p>
-
-      <h3 style="color:var(--navy);margin-top:24px;margin-bottom:8px;">How cost ranges are built</h3>
-      <p style="color:var(--gray-600);line-height:1.7;margin-bottom:12px;">Every parameter in the model carries a <strong>basis</strong> label, and the calculator shows it for your specific estimate:</p>
-      <ul style="color:var(--gray-600);line-height:1.8;margin-bottom:12px;padding-left:24px;">
-        <li><strong style="color:var(--green);">cited</strong> — a specific published figure from a named study.</li>
-        <li><strong style="color:var(--orange);">calibrated</strong> — a synthesized range informed by the studies below, but not a single number any one of them publishes.</li>
-        <li><strong style="color:var(--red);">heuristic</strong> — practitioner judgment. Not from a study. These are the numbers most worth arguing with.</li>
-      </ul>
-      <p style="color:var(--gray-600);line-height:1.7;margin-bottom:24px;">Ranges are wide where the underlying data is genuinely wide. An honest 3-year range you can plan against beats a precise-looking point estimate that misleads.</p>
-
-      <p style="color:var(--gray-600);line-height:1.7;margin-bottom:12px;"><strong>Research the model is calibrated against:</strong></p>
-      <ul style="color:var(--gray-600);line-height:1.8;margin-bottom:24px;padding-left:24px;">
-        <li><strong>RAND RR-A2680-1</strong> (2024) — "The Root Causes of Failure for AI Projects." 65 practitioner interviews. <em>Qualitative — it informs the risk model, not a cost multiplier.</em></li>
-        <li><strong>S&amp;P Global Market Intelligence — VotE: AI &amp; ML 2025</strong> — survey of 1,006 IT/line-of-business professionals (North America + Europe), May 2025. Source of the abandonment figures: orgs abandoning most AI initiatives before production rose 17% → 42% YoY; ~46% of projects scrapped between PoC and broad adoption.</li>
-        <li><strong>Stanford HAI AI Index Report 2025</strong> — inference/compute cost trends (e.g., the cost to run a GPT-3.5-level query fell ~280× from Nov 2022 to Oct 2024). It does <em>not</em> publish a "time to ROI" figure — an earlier version of this site wrongly attributed an 18–36-month ROI claim to it; removed.</li>
-        <li><strong>Gartner</strong> (July 2024 press release) — <em>predicted</em> ≥30% of generative-AI projects abandoned after a proof of concept by end of 2025 (a forecast); timeline optimism.</li>
-        <li><strong>McKinsey Global Survey on AI</strong> (2024) — phase-level cost composition across industries.</li>
-        <li><strong>Data-prep share</strong> — data preparation is consistently the single largest time/cost bucket in practitioner surveys, well above model-building. The popular "80% of time on data prep" figure is unsourced folklore (CrowdFlower, ~2016) and is <em>not</em> used; the 30% data-prep cost share is a calibrated estimate, not a cited statistic.</li>
-      </ul>
-
-      <h3 style="color:var(--navy);margin-top:24px;margin-bottom:8px;">About the 2.8× multiplier</h3>
-      <p style="color:var(--gray-600);line-height:1.7;margin-bottom:12px;">The headline — a build-only quote covers ~20–35% of true 3-year cost, a ~2.8× overrun — is a <strong>practitioner heuristic, not a published statistic</strong>. It's anchored to the consistent finding (McKinsey, Gartner) that 3-year run/maintain/retrain costs dwarf the initial build. Simple projects (single-system RAG or chatbot) land closer to 2.0×; heavily regulated ones (SR 11-7, FDA SaMD) routinely exceed 4×. RAND's failure study is qualitative and publishes no multiplier — anyone citing it for a dollar figure is overreaching, and earlier versions of this site did exactly that. The number lives in <a href="https://github.com/brcrusoe72/trueaicost/blob/main/model.js" style="color:var(--blue);">model.js</a>; if you have better data, send a PR.</p>
-
-      <h3 style="color:var(--navy);margin-top:24px;margin-bottom:8px;">What I don't use</h3>
-      <p style="color:var(--gray-600);line-height:1.7;margin-bottom:16px;">Vendor-published ROI case studies are excluded — they're selection-biased (vendors publish wins, not abandoned pilots). If you find a claim on this site you can't trace to a named source or a labeled heuristic, <a href="https://github.com/brcrusoe72/trueaicost/issues" style="color:var(--blue);">open an issue</a>.</p>
+      <h2 class="section-title">Every number is sourced — or labeled a guess</h2>
+      <p class="section-sub">Each figure in the model is tagged <strong style="color:var(--green);">cited</strong>, <strong style="color:var(--orange);">calibrated</strong>, or <strong style="color:var(--red);">heuristic</strong> — so you always know what's a published stat versus practitioner judgment. The full sourcing — every study, what it does and doesn't say, and the honest caveats — lives on one page.</p>
+      <a href="methodology.html" class="btn btn-primary">Read the full methodology →</a>
     </div>
   </section>
 
   <section class="section" style="text-align:center;">
     <div class="container">
-      <h2 class="section-title">Ready to Know the Real Cost?</h2>
-      <p class="section-sub">Get your 3-year AI TCO estimate in under 5 minutes. Free. No signup. Math shown.</p>
-      <a href="calculator.html" class="btn btn-primary" style="font-size:1.1rem;padding:16px 40px;">Launch the Calculator →</a>
+      <h2 class="section-title" style="text-align:center;">Ready to Know the Real Cost?</h2>
+      <p class="section-sub" style="margin-left:auto;margin-right:auto;">Get your 3-year AI TCO estimate in under 5 minutes. Free. No signup. Math shown.</p>
+      <a href="calculator.html" class="btn btn-primary" style="font-size:1rem;padding:15px 36px;">Launch the Calculator →</a>
     </div>
   </section>
 
@@ -210,9 +155,9 @@
           labels: ['Data Prep & Cleaning', 'Monitoring & Retraining', 'Integration & MLOps', 'Compute / Inference', 'Model Development', 'Change Management'],
           datasets: [{
             data: [30, 25, 17.5, 12.5, 10, 5],
-            backgroundColor: ['#1a365d', '#2a4a7f', '#3b6aad', '#ed8936', '#f6ad55', '#cbd5e0'],
+            backgroundColor: ['#15161a', '#46423b', '#6c675c', '#b14a27', '#cf6f47', '#c9c0ae'],
             borderWidth: 2,
-            borderColor: '#fff'
+            borderColor: '#fcfbf7'
           }]
         },
         options: {
