@@ -95,7 +95,10 @@ Given a quote and the line items it includes, the model reports **two separate f
   professionals (NA + Europe), May 2025. Source of the abandonment figures: orgs abandoning most AI
   initiatives before production rose **17% → 42%** YoY; **~46%** of projects scrapped between PoC and
   broad adoption. ([source](https://www.spglobal.com/market-intelligence/en/news-insights/research/ai-experiences-rapid-adoption-but-with-mixed-outcomes-highlights-from-vote-ai-machine-learning))
-- **Stanford HAI AI Index 2025** — ROI timing, adoption-vs-value gap, compute trends.
+- **Stanford HAI AI Index 2025** — inference/compute cost trends (e.g., the cost to run a
+  GPT-3.5-level query fell ~280× from Nov 2022 to Oct 2024). Note: the Index does **not** publish a
+  "time to ROI" figure; an earlier version of this site misattributed an 18–36-month ROI claim to it,
+  now removed.
 - **Gartner** (July 2024 press release) — *predicted* ≥30% of generative-AI projects abandoned after
   proof of concept by end of 2025 (a forecast); timeline optimism.
 - **McKinsey Global Survey on AI** (2024) — phase-level cost composition.

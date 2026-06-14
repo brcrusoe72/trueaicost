@@ -53,9 +53,11 @@
       url: 'https://www.rand.org/pubs/research_reports/RRA2680-1.html'
     },
     stanford_hai_2025: {
-      label: 'Stanford HAI AI Index Report (2025)',
-      note: 'Adoption vs. value gap, production ROI timing, compute/inference trends.',
-      url: 'https://aiindex.stanford.edu/report/'
+      label: 'Stanford HAI AI Index Report 2025',
+      note: 'Used for inference/compute cost trends (e.g., the cost to run a GPT-3.5-level query fell ~280x ' +
+            'from Nov 2022 to Oct 2024). The Index does NOT publish a "time to ROI" figure — an earlier ' +
+            'version of this site wrongly attributed an 18-36mo ROI claim to it; that has been removed.',
+      url: 'https://hai.stanford.edu/ai-index/2025-ai-index-report'
     },
     gartner_2024: {
       label: 'Gartner (2024)',
