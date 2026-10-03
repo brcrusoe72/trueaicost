@@ -50,6 +50,8 @@ index.html        Landing page + methodology
 calculator.html   4-step calculator (the main thing)
 model.js          The whole cost model — open, documented, unit-tested
 model.test.js     Plain-Node tests (no test runner needed)
+roi-model.js      Pure 36-month ROI projection used by the ROI page
+roi-model.test.js Plain-Node ROI regression tests
 benchmarks.html   Cost benchmark tables by industry / project type / size
 vendors.html      Vendor scorecard (opinionated; methodology stated on-page)
 roi.html          ROI reality-check tool
@@ -72,6 +74,7 @@ python3 -m http.server 8000
 
 ```bash
 node model.test.js
+node roi-model.test.js
 ```
 
 No dependencies. The tests assert the invariants that matter: TCO ordering, that
