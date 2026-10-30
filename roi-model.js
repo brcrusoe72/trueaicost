@@ -12,8 +12,9 @@
   'use strict';
 
   function finiteNonnegative(value) {
+    // Reject magnitudes beyond exact integer precision before arithmetic.
     var number = Number(value);
-    return Number.isFinite(number) && number >= 0 ? number : 0;
+    return Number.isFinite(number) && number >= 0 && number <= Number.MAX_SAFE_INTEGER ? number : 0;
   }
 
   function clamp(value, low, high) {

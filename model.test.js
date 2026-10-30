@@ -108,4 +108,12 @@ test('duplicate included categories count only once', function () {
   assert.strictEqual(r.vendorGap.scopeCoveredPct, 40);
 });
 
+test('rejects finite vendor inputs beyond exact integer precision', function () {
+  var result = M.estimateAICost({ vendorQuote: Number.MAX_VALUE, vendorTimeline: Number.MAX_VALUE });
+  assert.strictEqual(result.vendorGap, null);
+  var timeline = M.estimateAICost({ vendorQuote: 1000, vendorTimeline: Number.MAX_VALUE });
+  assert.strictEqual(timeline.vendorGap.vendorTimeline, 0);
+  assert.ok(Number.isFinite(result.tco.mid));
+});
+
 console.log('\n' + pass + ' passed');

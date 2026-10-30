@@ -196,8 +196,9 @@
   function clamp(n, lo, hi) { return Math.min(hi, Math.max(lo, n)); }
 
   function finiteNumber(value, fallback) {
+    // Reject magnitudes beyond exact integer precision before arithmetic.
     var number = Number(value);
-    return Number.isFinite(number) ? number : fallback;
+    return Number.isFinite(number) && Math.abs(number) <= Number.MAX_SAFE_INTEGER ? number : fallback;
   }
 
   function finiteNonnegative(value) {

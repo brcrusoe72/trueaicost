@@ -59,4 +59,11 @@ test('realistic projection includes delay and hidden costs', function () {
   assert.strictEqual(result.retrainCostQuarterly, 3000);
 });
 
+test('rejects finite inputs large enough to overflow later arithmetic', function () {
+  var result = ROI.estimateROI({ efficiencyGain: 100, processCost: Number.MAX_VALUE, aiCost: Number.MAX_VALUE, employees: Number.MAX_VALUE });
+  assert.strictEqual(result.inputs.processCost, 0);
+  assert.strictEqual(result.inputs.aiCost, 0);
+  result.optimistic.concat(result.realistic).forEach(function (value) { assert.ok(Number.isFinite(value)); });
+});
+
 console.log('\n' + pass + ' passed');
