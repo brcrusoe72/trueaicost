@@ -33,7 +33,7 @@
           </div>
           <div class="form-group">
             <label>Current Annual Process Cost ($)</label>
-            <input type="number" id="processCost" value="500000" placeholder="e.g., 500000">
+            <input type="number" id="processCost" value="500000" min="0" placeholder="e.g., 500000">
             <div class="form-help">Total annual cost of the process AI will improve</div>
           </div>
           <div class="form-group">
@@ -42,7 +42,7 @@
           </div>
           <div class="form-group">
             <label>Estimated AI Project Cost ($)</label>
-            <input type="number" id="aiCost" value="300000" placeholder="e.g., 300000">
+            <input type="number" id="aiCost" value="300000" min="0" placeholder="e.g., 300000">
             <div class="form-help">Use our <a href="calculator.html">Calculator</a> to estimate this</div>
           </div>
         </div>
@@ -99,61 +99,29 @@
   <div id="site-footer"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"></script>
+  <script src="roi-model.js"></script>
   <script src="shared.js"></script>
   <script>
     let roiChart;
 
     function calculateROI() {
-      const effGain = +document.getElementById('effGain').value / 100;
-      const processCost = +document.getElementById('processCost').value;
-      const employees = +document.getElementById('employees').value;
-      const aiCost = +document.getElementById('aiCost').value;
-
-      const annualSavingsPotential = processCost * effGain;
-      const monthlySavingsFull = annualSavingsPotential / 12;
-
-      // Optimistic model: immediate full savings after 3-month implementation
-      const implMonthsOpt = 3;
-      let optimisticCum = [];
-      let cumOpt = -aiCost;
-      for (let m = 1; m <= 36; m++) {
-        if (m <= implMonthsOpt) {
-          // spending, no savings
-        } else {
-          cumOpt += monthlySavingsFull;
-        }
-        optimisticCum.push(cumOpt);
-      }
-
-      // Realistic model
-      const implMonthsReal = Math.round(implMonthsOpt * 2.5); // 2.5x delay
-      const rampMonths = 6; // accuracy ramp-up
-      const adoptionHalflife = 8; // months to 50% adoption
-      const retrainCostQuarterly = aiCost * 0.03; // 3% of project cost per retrain
-      const trueCost = aiCost * 1.3; // 30% overrun on average
-
-      let realisticCum = [];
-      let cumReal = -trueCost;
-      for (let m = 1; m <= 36; m++) {
-        // Quarterly retrain cost
-        if (m > implMonthsReal && m % 3 === 0) cumReal -= retrainCostQuarterly;
-
-        if (m <= implMonthsReal) {
-          // Implementation phase — no savings
-        } else {
-          const monthsSinceLaunch = m - implMonthsReal;
-          // Accuracy ramp: starts at 50%, reaches target over rampMonths
-          const accuracyFactor = Math.min(1, 0.5 + 0.5 * (monthsSinceLaunch / rampMonths));
-          // Adoption S-curve
-          const adoptionFactor = 1 / (1 + Math.exp(-(monthsSinceLaunch - adoptionHalflife) / 2.5));
-          cumReal += monthlySavingsFull * accuracyFactor * adoptionFactor;
-        }
-        realisticCum.push(cumReal);
-      }
-
-      // Find breakeven months
-      const optBreakeven = optimisticCum.findIndex(v => v >= 0) + 1;
-      const realBreakeven = realisticCum.findIndex(v => v >= 0) + 1;
+      const result = TrueAICostROI.estimateROI({
+        efficiencyGain: document.getElementById('effGain').value,
+        processCost: document.getElementById('processCost').value,
+        employees: document.getElementById('employees').value,
+        aiCost: document.getElementById('aiCost').value,
+      });
+      const annualSavingsPotential = result.annualSavingsPotential;
+      const optimisticCum = result.optimistic;
+      const realisticCum = result.realistic;
+      const optBreakeven = result.optimisticBreakeven;
+      const realBreakeven = result.realisticBreakeven;
+      const implMonthsOpt = result.implementationMonthsOptimistic;
+      const implMonthsReal = result.implementationMonthsRealistic;
+      const rampMonths = result.rampMonths;
+      const adoptionHalflife = result.adoptionHalflife;
+      const retrainCostQuarterly = result.retrainCostQuarterly;
+      const trueCost = result.trueCost;
 
       document.getElementById('optimisticBreakeven').textContent = optBreakeven > 0 ? optBreakeven + ' months' : '36+ months';
       document.getElementById('realisticBreakeven').textContent = realBreakeven > 0 ? realBreakeven + ' months' : '36+ months';

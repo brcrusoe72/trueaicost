@@ -195,6 +195,16 @@
    * -------------------------------------------------------------------------*/
   function clamp(n, lo, hi) { return Math.min(hi, Math.max(lo, n)); }
 
+  function finiteNumber(value, fallback) {
+    // Reject magnitudes beyond exact integer precision before arithmetic.
+    var number = Number(value);
+    return Number.isFinite(number) && Math.abs(number) <= Number.MAX_SAFE_INTEGER ? number : fallback;
+  }
+
+  function finiteNonnegative(value) {
+    return Math.max(0, finiteNumber(value, 0));
+  }
+
   function trace(assumptions, key, label, value, basis, source, note) {
     assumptions.push({ key: key, label: label, value: value, basis: basis, source: source, note: note || '' });
   }
@@ -206,11 +216,15 @@
     var input = raw || {};
     var projectType = BASE_COSTS[input.projectType] ? input.projectType : 'custom';
     var companySize = SIZE_MULT[input.companySize] ? input.companySize : 'mid';
-    var itMaturity = clamp(Number(input.itMaturity) || 3, 1, 5);
-    var dataReadiness = clamp(Number(input.dataReadiness) || 2, 1, 5);
-    var vendorQuote = Math.max(0, Number(input.vendorQuote) || 0);
-    var vendorTimeline = Math.max(0, Number(input.vendorTimeline) || 0);
-    var included = Array.isArray(input.included) ? input.included : [];
+    var itMaturity = clamp(finiteNumber(input.itMaturity, 3), 1, 5);
+    var dataReadiness = clamp(finiteNumber(input.dataReadiness, 2), 1, 5);
+    var vendorQuote = finiteNonnegative(input.vendorQuote);
+    var vendorTimeline = finiteNonnegative(input.vendorTimeline);
+    var included = Array.isArray(input.included)
+      ? input.included.filter(function (item, index, items) {
+          return typeof item === 'string' && items.indexOf(item) === index;
+        })
+      : [];
 
     var assumptions = [];
     var usedSources = {};

@@ -76,4 +76,44 @@ test('unknown project type falls back to custom, never throws', function () {
   assert.ok(r.tco.mid > 0);
 });
 
+test('non-finite numeric inputs cannot corrupt model output', function () {
+  var r = M.estimateAICost({
+    projectType: 'chatbot',
+    companySize: 'mid',
+    itMaturity: Infinity,
+    dataReadiness: NaN,
+    vendorQuote: '1e309',
+    vendorTimeline: Infinity
+  });
+  assert.strictEqual(r.inputs.itMaturity, 3);
+  assert.strictEqual(r.inputs.dataReadiness, 2);
+  assert.strictEqual(r.vendorGap, null);
+  assert.ok(Number.isFinite(r.tco.mid));
+  (function assertFiniteNumbers(value) {
+    if (typeof value === 'number') {
+      assert.ok(Number.isFinite(value), 'all numeric outputs must be finite');
+    } else if (value && typeof value === 'object') {
+      Object.keys(value).forEach(function (key) { assertFiniteNumbers(value[key]); });
+    }
+  })(r);
+});
+
+test('duplicate included categories count only once', function () {
+  var r = M.estimateAICost({
+    projectType: 'chatbot',
+    companySize: 'mid',
+    vendorQuote: 100000,
+    included: ['model', 'model', 'data']
+  });
+  assert.strictEqual(r.vendorGap.scopeCoveredPct, 40);
+});
+
+test('rejects finite vendor inputs beyond exact integer precision', function () {
+  var result = M.estimateAICost({ vendorQuote: Number.MAX_VALUE, vendorTimeline: Number.MAX_VALUE });
+  assert.strictEqual(result.vendorGap, null);
+  var timeline = M.estimateAICost({ vendorQuote: 1000, vendorTimeline: Number.MAX_VALUE });
+  assert.strictEqual(timeline.vendorGap.vendorTimeline, 0);
+  assert.ok(Number.isFinite(result.tco.mid));
+});
+
 console.log('\n' + pass + ' passed');
